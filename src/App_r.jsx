@@ -723,10 +723,12 @@ const App = (props) => {
       logger = eztext(has_eztext).init();
       placeholder = document.getElementById('dummy');
       log('initialized application '+appDryInitialized);
-
-      // setpage();
+    }else{
+      if(logger && placeholder){
+        logger.dom_node.classList.remove('deferred');
+        placeholder.classList.remove('deferred');
+      }
     }
-
   });
 
 

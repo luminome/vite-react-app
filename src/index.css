@@ -1,3 +1,7 @@
+body, html{
+  background-color: #282c34; 
+}
+
 body {
   margin: 0;
   font-family: -apple-system, sans-serif;
@@ -6,6 +10,9 @@ body {
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
+}
+
+.deferred{
+  display:none !important;
 }
