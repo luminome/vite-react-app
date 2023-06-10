@@ -2,9 +2,33 @@
 	{
 		"key": "057jtq24jj",
 		"label": "BELL",
-		"content": "The loading is still terrible. The app loads-in before the css.",
-		"children": [],
-		"index": 4,
+		"content": "The loading is still terrible. The app loads-in before the css when built.",
+		"children": [
+			{
+				"key": "02nzjbnmrl",
+				"label": "FLAT",
+				"content": "Might be an issue with VITE.",
+				"children": [
+					{
+						"key": "76z9on9eyj",
+						"label": "GLASS",
+						"content": "https://github.com/vitejs/vite/issues/3924",
+						"children": [],
+						"index": 0
+					}
+				],
+				"index": 0,
+				"clicks": 1
+			},
+			{
+				"key": "0dv5v3mxex",
+				"label": "WORK",
+				"content": "Module call is moved to head.",
+				"children": [],
+				"index": 1
+			}
+		],
+		"index": 0,
 		"delta_node_id": "jfmqj5vhv6k"
 	},
 	{
@@ -63,7 +87,15 @@
 		"method": "added",
 		"delta_timer": "2023-06-10T11:35:50.540Z",
 		"id": "v220natjuv",
-		"children": [],
+		"children": [
+			{
+				"key": "34g8jtyfjqf",
+				"label": "LINEAR BEARING",
+				"content": "https://i.stack.imgur.com/9UVnC.png",
+				"children": [],
+				"index": 0
+			}
+		],
 		"index": 2,
 		"clicks": 0
 	},

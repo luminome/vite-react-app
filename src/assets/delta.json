@@ -318,6 +318,92 @@
 			"method": "changed-content",
 			"delta_timer": "2023-06-10T15:24:14.880Z",
 			"id": "e2iigcy0w2"
+		},
+		{
+			"key": "02nzjbnmrl",
+			"label": "FLAT",
+			"content": "FLAT",
+			"toIndex": 0,
+			"toParent": "057jtq24jj",
+			"method": "added",
+			"delta_timer": "2023-06-10T16:13:01.222Z",
+			"id": "fo3i3ptbus"
+		},
+		{
+			"key": "02nzjbnmrl",
+			"label": "FLAT",
+			"content": "Might be an issue with VITE.",
+			"index": 0,
+			"method": "changed-content",
+			"delta_timer": "2023-06-10T16:13:11.314Z",
+			"id": "zrpf6uwb2n"
+		},
+		{
+			"key": "76z9on9eyj",
+			"label": "GLASS",
+			"content": "GLASS",
+			"toIndex": 0,
+			"toParent": "02nzjbnmrl",
+			"method": "added",
+			"delta_timer": "2023-06-10T16:13:13.528Z",
+			"id": "chhjjmrbpc"
+		},
+		{
+			"key": "76z9on9eyj",
+			"label": "GLASS",
+			"content": "https://github.com/vitejs/vite/issues/3924",
+			"index": 0,
+			"method": "changed-content",
+			"delta_timer": "2023-06-10T16:13:17.752Z",
+			"id": "ocjqmplog6f"
+		},
+		{
+			"key": "34g8jtyfjqf",
+			"label": "LINEAR BEARING",
+			"content": "LINEAR BEARING",
+			"toIndex": 0,
+			"toParent": "a128yuxbsd",
+			"method": "added",
+			"delta_timer": "2023-06-10T16:13:50.294Z",
+			"id": "va7kaj2vmxf"
+		},
+		{
+			"key": "34g8jtyfjqf",
+			"label": "LINEAR BEARING",
+			"content": "https://i.stack.imgur.com/9UVnC.png",
+			"index": 0,
+			"method": "changed-content",
+			"delta_timer": "2023-06-10T16:13:55.997Z",
+			"id": "1pdn9tqipn"
+		},
+		{
+			"key": "057jtq24jj",
+			"label": "BELL",
+			"content": "The loading is still terrible. The app loads-in before the css when built.",
+			"index": 0,
+			"delta_node_id": "jfmqj5vhv6k",
+			"method": "changed-content",
+			"delta_timer": "2023-06-10T16:14:58.413Z",
+			"id": "lf923fxel8"
+		},
+		{
+			"key": "0dv5v3mxex",
+			"label": "WORK",
+			"content": "WORK",
+			"toIndex": 1,
+			"toParent": "057jtq24jj",
+			"method": "added",
+			"delta_timer": "2023-06-10T16:15:00.099Z",
+			"id": "cz1wnr33gi"
+		},
+		{
+			"key": "0dv5v3mxex",
+			"label": "WORK",
+			"content": "Module call is moved to head.",
+			"index": 1,
+			"method": "changed-content",
+			"delta_timer": "2023-06-10T16:15:21.075Z",
+			"id": "bmjwf4hggn"
 		}
 	]
 }

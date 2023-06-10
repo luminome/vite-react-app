@@ -627,7 +627,7 @@ const App = (props) => {
     // WHAT IF THERE IS NO FILE AND ONLY DELTA?
     // IT NEEDS TO REASSEMBLE THE "FILE" FROM THE DELTAS.
 
-    log('useEffect appInitRef', appInitRef.current, 'hello');
+    log('useEffect appInitRef', appInitRef.current);
     // console.log(AppHistory().ACTIONS);
 
     const getTokenized = async () => {
@@ -702,12 +702,18 @@ const App = (props) => {
       const has_eztext = document.getElementById('ez-text');
       logger = eztext(has_eztext).init();
       placeholder = document.getElementById('dummy');
-      log('initialized application '+appDryInitialized);
+      log('initialized application ', appDryInitialized);
     }else{
+      const context = document.getElementById('context');
+      
+
       if(logger && placeholder){
         logger.dom_node.classList.remove('deferred');
         placeholder.classList.remove('deferred');
       }
+
+      context.style.display = 'block';
+      log('draw-state finalized', appDryInitialized);
     }
   });
 
