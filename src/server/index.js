@@ -20,8 +20,10 @@ const app = express();
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
-
 app.use('/api', api_router);
+
+
+console.log(`\x1b[33mTEST -> ${process.env.TEST_ENV || 'no test'}\x1b[0m`);
 
 ViteExpress.listen(app, PORT, () =>
   console.log(`App (${package_info.name}) ${MODE} server is listening on port ${PORT}`)
