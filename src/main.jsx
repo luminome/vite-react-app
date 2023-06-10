@@ -6,12 +6,9 @@ import './App_r.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <>
+  <div id="dummy" className="placeholder deferred"></div>
   <React.StrictMode>
     <App />
   </React.StrictMode>
-  <div>
-    <div id="dummy" className="placeholder deferred"></div>
-    <div id="ez-text" className="deferred"></div>
-  </div>
   </>
 )
