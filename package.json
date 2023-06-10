@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "NODE_ENV=development nodemon src/server/index.js -w src/server -w src --ignore src/assets ",
+    "dev": "NODE_ENV=development nodemon src/server/index.js -w src -w index.html --ignore src/assets ",
     "start": "NODE_ENV=production npm run build --omit=dev && node src/server/index.js",
     "dev-vite": "vite",
     "build": "vite build",
