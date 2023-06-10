@@ -1,15 +1,15 @@
+import './App-canonical.css';
 import logo from './assets/logo.svg';
 import { eztext } from "./js/eztext";
 import React, { Component, useRef, useState, useEffect, useCallback } from "react";
 import { useDrag, useDrop, DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-// import './App_r.css';
-import './App-canonical.css';
 import { ReactSVG } from "react-svg";
 
 import * as history from './AppHistory';
-import AppHistoryList from './AppHistoryList';
-import * as util from './AppUtil'
+import * as util from './AppUtil';
+
+const AppHistoryList = React.lazy(() => import('./AppHistoryList'));
 
 
 const getWordFromApi = async () => {
@@ -49,6 +49,7 @@ const getDeltas = async () => {
   return res;
 };
 
+
 let indices = 0;
 let current_message = null;
 let placeholder = null;
@@ -58,29 +59,12 @@ let appDryInitialized = false;
 const log_stack = [];
 function log(){
   const args = Array.from(arguments);
-
-
   const t = new Date();
   const ts = util.date_time(t) + '\t';
   log_stack.unshift(ts+args.join(', '));
   logger && logger.set_text(log_stack.join('\n'));
 };
 
-// const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-// const keyGen = () => (Math.random() + 1).toString(36).substring(2);
-// const date_filter = (ti) => (typeof ti === 'string' || ti instanceof String) ? new Date(Date.parse(ti)) : ti;
-
-// const date_time = (ti) => {
-//   const t = date_filter(ti);
-//   return t.getUTCHours() + ":" + t.getUTCMinutes() + ":" + t.getUTCSeconds().toString().padStart(2,'0');
-// };
-
-// const date_day_time = (ti) => {
-//   const t = date_filter(ti);
-//   return weekday[t.getUTCDay()] + " " + t.getUTCHours() + ":" + t.getUTCMinutes() + ":" + t.getUTCSeconds().toString().padStart(2,'0');
-// };
-
-// const date_timestamp = (ti) => date_filter(ti).getTime();
 
 const DraggableFunctionComponent = (props) =>{
   const selfRef = useRef(null);
@@ -88,17 +72,17 @@ const DraggableFunctionComponent = (props) =>{
   const dropRef = useRef(null);
   const [startDrag, setStartDrag] = useState(false);
   const [isInit, setIsInit] = useState(false);
-
   const [node, nodeParent, nodeRef] = [props.node, props.nodeParent, props.nodeRef];
 
   const [{ isDragging }, drag] = useDrag(() => ({
-    item: {node, nodeParent, nodeRef},
-    type:'draggable-item',
-    collect: (monitor) => ({
-      isDragging: !!monitor.isDragging(),
-    }),
-    end: (item, monitor) => cancelHandler(item)
-  }));
+      item: {node, nodeParent, nodeRef},
+      type:'draggable-item',
+      collect: (monitor) => ({
+        isDragging: !!monitor.isDragging(),
+      }),
+      end: (item, monitor) => cancelHandler(item)
+    })
+  );
 
   const [{ isOver }, drop] = useDrop(() => ({
       accept:'draggable-item',
@@ -148,9 +132,7 @@ const DraggableFunctionComponent = (props) =>{
         }
       }
     })
-  )
-
-
+  );
 
   if(placeholder) placeholder.style.opacity = +isOver;
 
@@ -188,7 +170,6 @@ const DraggableFunctionComponent = (props) =>{
     dropRef.current = props.nodeDropRef.current;
     selfRef.current = props.nodeRef.current;
     parentRef.current = props.nodeParentRef ? props.nodeParentRef.current : null;
-    // console.log('init() DraggableFunctionComponent', props.node.label);
     setStartDrag(false);
   }, [drag, drop, setStartDrag, props])
 

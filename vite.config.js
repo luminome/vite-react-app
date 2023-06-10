@@ -9,13 +9,10 @@ export default defineConfig({
       host: "localhost",
       port: 15319 ///15319
     }
+  },
+  build: {
+    cssCodeSplit: false
   }
-  // server: {
-  //   hmr: {
-  //       host: "localhost",
-  //       port: 3001,
-  //       // protocol: "wss",
-  //   },
-  // },
+
 })
 
