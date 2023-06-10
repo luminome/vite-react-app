@@ -1,5 +1,78 @@
 [
 	{
+		"key": "xgzjwvntxr",
+		"label": "DIVISION ",
+		"content": "In here is the issues: with deltas.",
+		"children": [
+			{
+				"key": "rdnv9w2au2",
+				"label": "RELATE",
+				"content": "Need a way to flag deltas:",
+				"children": [
+					{
+						"key": "16nrbkovm",
+						"label": "LOCAL",
+						"content": "Currently flagging (or attempting to flag) as \"stashed\".",
+						"children": [
+							{
+								"key": "9c2p28hpcj",
+								"label": "CUL DE SAC",
+								"content": "What is the workflow?",
+								"children": [
+									{
+										"key": "2qh1rf5v81",
+										"label": "SMALL",
+										"content": "state gets rewound to previous state because a delta was selected.",
+										"children": [],
+										"index": 0
+									},
+									{
+										"key": "k7awnqkuxe",
+										"label": "GERMS",
+										"content": "that delta is prior to now (index 0)",
+										"children": [],
+										"index": 1
+									},
+									{
+										"key": "xtwcboadgn",
+										"label": "TERM",
+										"content": "deltas prior to selection are flagged as \"stashed\"",
+										"children": [],
+										"index": 2
+									}
+								],
+								"index": 0,
+								"clicks": 0
+							}
+						],
+						"index": 0,
+						"clicks": 0
+					},
+					{
+						"key": "u2w6wqa3bh",
+						"label": "FAIRE",
+						"content": "Determined that it's worth it to have the state-file and not persistently rebuild from deltas.",
+						"children": [
+							{
+								"key": "ruky6qd3l",
+								"label": "UNIQUE",
+								"content": "because of economy.",
+								"children": [],
+								"index": 0
+							}
+						],
+						"index": 1
+					}
+				],
+				"index": 0,
+				"delta_node_id": "ceg3b7limz",
+				"clicks": 2
+			}
+		],
+		"index": 0,
+		"clicks": 6
+	},
+	{
 		"key": "057jtq24jj",
 		"label": "BELL",
 		"content": "The loading is still terrible. The app loads-in before the css when built.",
@@ -28,55 +101,31 @@
 				"index": 1
 			}
 		],
-		"index": 0,
-		"delta_node_id": "jfmqj5vhv6k"
+		"index": 1,
+		"delta_node_id": "jfmqj5vhv6k",
+		"clicks": 1
 	},
 	{
-		"key": "quw45zeaz7",
-		"label": "ANTIGRAVITY TOOTHPASTE",
-		"content": "Stable operation in production.",
-		"toIndex": 3,
-		"toParent": "root",
-		"method": "added",
-		"delta_timer": "2023-06-10T11:37:16.290Z",
-		"id": "pxv9djz2k1",
+		"key": "wov62ri4pz",
+		"label": "TACET APPROVAL",
+		"content": "Now without the use of proxy in package.json.",
+		"children": [],
+		"index": 2
+	},
+	{
+		"key": "xq28eb3y62",
+		"label": "BIRD FEEDER",
+		"content": "BIRD FEEDERs",
 		"children": [
 			{
-				"key": "mpjexmjcycf",
-				"label": "MUSIC",
-				"content": "No really, that happened.",
-				"toIndex": 0,
-				"toParent": "quw45zeaz7",
-				"method": "added",
-				"delta_timer": "2023-06-10T11:37:41.076Z",
-				"id": "dwina3na49",
+				"key": "doy0wnn1ej",
+				"label": "FILL WITH WATER",
+				"content": "FILL WITH WATER",
 				"children": [],
-				"index": 0,
-				"clicks": 2
-			},
-			{
-				"key": "0zv46ee35hl",
-				"label": "SEARCHLIGHT EFFECT",
-				"content": "Searchlight casting for faults in the clouds of illusion.",
-				"toIndex": 1,
-				"toParent": "quw45zeaz7",
-				"method": "added",
-				"delta_timer": "2023-06-10T11:37:52.074Z",
-				"id": "8oj3ctf8h8",
-				"children": [],
-				"index": 1,
-				"clicks": 2
-			},
-			{
-				"key": "7hho2d57jl",
-				"label": "REAL",
-				"content": "REAL",
-				"children": [],
-				"index": 2
+				"index": 0
 			}
 		],
-		"index": 1,
-		"clicks": 4
+		"index": 3
 	},
 	{
 		"key": "a128yuxbsd",
@@ -89,28 +138,85 @@
 		"id": "v220natjuv",
 		"children": [
 			{
+				"key": "quw45zeaz7",
+				"label": "ANTIGRAVITY TOOTHPASTE",
+				"content": "Stable operation in production.",
+				"toIndex": 3,
+				"toParent": "root",
+				"method": "added",
+				"delta_timer": "2023-06-10T11:37:16.290Z",
+				"id": "pxv9djz2k1",
+				"children": [
+					{
+						"key": "mpjexmjcycf",
+						"label": "MUSIC",
+						"content": "No really, that happened.",
+						"toIndex": 0,
+						"toParent": "quw45zeaz7",
+						"method": "added",
+						"delta_timer": "2023-06-10T11:37:41.076Z",
+						"id": "dwina3na49",
+						"children": [],
+						"index": 0,
+						"clicks": 2
+					},
+					{
+						"key": "0zv46ee35hl",
+						"label": "SEARCHLIGHT EFFECT",
+						"content": "Searchlight casting for faults in the clouds of illusion.",
+						"toIndex": 1,
+						"toParent": "quw45zeaz7",
+						"method": "added",
+						"delta_timer": "2023-06-10T11:37:52.074Z",
+						"id": "8oj3ctf8h8",
+						"children": [],
+						"index": 1,
+						"clicks": 2
+					},
+					{
+						"key": "7hho2d57jl",
+						"label": "REAL",
+						"content": "REAL",
+						"children": [],
+						"index": 2
+					}
+				],
+				"index": 0,
+				"clicks": 6
+			},
+			{
 				"key": "34g8jtyfjqf",
 				"label": "LINEAR BEARING",
 				"content": "https://i.stack.imgur.com/9UVnC.png",
 				"children": [],
-				"index": 0
+				"index": 1
 			}
 		],
-		"index": 2,
+		"index": 4,
 		"clicks": 0
 	},
 	{
-		"key": "doy0wnn1ej",
-		"label": "FILL WITH WATER",
-		"content": "FILL WITH WATER",
-		"children": [],
-		"index": 3
+		"key": "wj4egfejg4",
+		"label": "TACET APPROVAL",
+		"content": "TERRIBLE DELTAS are SAVED",
+		"children": [
+			{
+				"key": "zeccrar7nxj",
+				"label": "YOLK",
+				"content": "YOLK",
+				"children": [],
+				"index": 0
+			}
+		],
+		"index": 5,
+		"delta_node_id": "lch2t7n32",
+		"clicks": 0
 	},
 	{
-		"key": "wov62ri4pz",
-		"label": "TACET APPROVAL",
-		"content": "Now without the use of proxy in package.json.",
+		"key": "hyvqee75rg",
+		"label": "ANTIGRAVITY TOOTHPASTE",
+		"content": "I like the idea of this.",
 		"children": [],
-		"index": 4
+		"index": 6
 	}
 ]

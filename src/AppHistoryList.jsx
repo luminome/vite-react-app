@@ -39,7 +39,7 @@ const DeltaRecordComponent = (props) =>{
         className={(isRevealed.state && "has-click delta-item-reveal") || 'has-click'} 
         style={{
             color: (isShown || isRevealed.state) && 'white', 
-            opacity: (time_stamp <= selected.to[1] ? 1.0 : 0.5),
+            opacity: (!props.object.stash && time_stamp <= selected.to[1] ? 1.0 : 0.5),
             borderTop: (time_stamp === selected.to[1]) && '1px white solid'
         }}
         >
@@ -102,8 +102,9 @@ const AppHistoryList = React.forwardRef((props, ref) => {
     
     return (
         <>
-        {/* <div className="mini-text">{props.source.length} nodes in history</div>
-        <div className="mini-text">{props.select().delta[0]}</div> */}
+        <div className="mini-text has-click" onClick={setPosition}>CURRENT
+            {selected.to[0]} / {props.source.length} D:{selected.direction} {selected.items}
+        </div>
 
         {props.source.map((d, index) => {
             const time_stamp = d.delta_timer ? util.date_timestamp(d.delta_timer) : util.date_timestamp(d.timer);
@@ -122,36 +123,11 @@ const AppHistoryList = React.forwardRef((props, ref) => {
         })}
 
         <div className="mini-text has-click" onClick={setPosition}>START
-            
             {selected.to[0]} / {props.source.length} D:{selected.direction} {selected.items}
         </div>
         </>
     )
 
-
-  // Rest of the component's code
 });
-
-// const AppHistoryList = (props) => {
-
-//     const [rerender, setRerender] = useState(false);
-//     const [source, setSource] = useState(props.source);
-
-
-//     useEffect(() => {
-//         // props.defineHistoryObject();
-//         console.log('AppHistoryList under review');
-
-//     },[source]);
-
-//     return (
-//         <>
-//         <div className="mini-text">{props.source.length} nodes in history</div>
- 
-//         </>
-//     )
-
-// }
-
 
 export default AppHistoryList;

@@ -580,17 +580,17 @@ const App = (props) => {
   const saveAppState = async () => {
     const now = appDeltaSelect();
 
-    // if(now.to[0]!==0){
-    //   log('not at zero');
-    //   const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).map(fd => fd.id);
-    //   log(flagged_deltas);
+    if(now.to[0]!==0){
+      log('not at zero');
+      const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).map(fd => fd.id);
+      log(flagged_deltas);
 
-    //   const deltas = {'action':'stash', 'ids':flagged_deltas};
+      const deltas = {'action':'stash', 'ids':flagged_deltas};
 
-    //   const save_dict = await saveApplicationState(deltas);
-    //   log(save_dict.message);
-    //   return;
-    // } 
+      const save_dict = await saveApplicationState(deltas);
+      log(save_dict.message);
+      // return;
+    } 
     
 
     // flagged_deltas.map(fd=>{
