@@ -1,5 +1,13 @@
 [
 	{
+		"key": "057jtq24jj",
+		"label": "BELL",
+		"content": "The loading is still terrible. The app loads-in before the css.",
+		"children": [],
+		"index": 4,
+		"delta_node_id": "jfmqj5vhv6k"
+	},
+	{
 		"key": "quw45zeaz7",
 		"label": "ANTIGRAVITY TOOTHPASTE",
 		"content": "Stable operation in production.",
@@ -43,8 +51,8 @@
 				"index": 2
 			}
 		],
-		"index": 0,
-		"clicks": 2
+		"index": 1,
+		"clicks": 4
 	},
 	{
 		"key": "a128yuxbsd",
@@ -56,7 +64,7 @@
 		"delta_timer": "2023-06-10T11:35:50.540Z",
 		"id": "v220natjuv",
 		"children": [],
-		"index": 1,
+		"index": 2,
 		"clicks": 0
 	},
 	{
@@ -64,19 +72,12 @@
 		"label": "FILL WITH WATER",
 		"content": "FILL WITH WATER",
 		"children": [],
-		"index": 2
+		"index": 3
 	},
 	{
 		"key": "wov62ri4pz",
 		"label": "TACET APPROVAL",
 		"content": "Now without the use of proxy in package.json.",
-		"children": [],
-		"index": 3
-	},
-	{
-		"key": "057jtq24jj",
-		"label": "BELL",
-		"content": "BELL",
 		"children": [],
 		"index": 4
 	}

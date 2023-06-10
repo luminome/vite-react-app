@@ -4,7 +4,7 @@ import React, { Component, useRef, useState, useEffect, useCallback } from "reac
 import { useDrag, useDrop, DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 // import './App_r.css';
-// import './App-canonical.css';
+import './App-canonical.css';
 import { ReactSVG } from "react-svg";
 
 import * as history from './AppHistory';

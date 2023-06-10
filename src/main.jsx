@@ -13,7 +13,7 @@ import './App-canonical.css'
 //   </>
 // )
 
-// this is because the load was terrible looking.
+// this is because the load is terrible looking but it doesn't change much.
 document.addEventListener("DOMContentLoaded", function(event) {
   ReactDOM.createRoot(document.getElementById('root')).render(
     <>

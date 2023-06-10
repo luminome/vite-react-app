@@ -225,8 +225,6 @@ text-decoration-style: dotted; */
 .node,
 .node-drop {
     box-sizing: border-box;
-    /* border-top: 1px rgba(0,0,0,0.0) solid;
-border-bottom: 1px rgba(0,0,0,0.0) solid; */
 }
 
 
@@ -270,12 +268,6 @@ border: 2px white dotted; */
 
 .App-el-moving {
     opacity: 0.5;
-}
-
-.App-drop {
-    /* margin:8px; */
-    /* padding:8px; */
-    /* border: 2px red solid; */
 }
 
 .App-logo {
