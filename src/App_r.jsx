@@ -273,15 +273,15 @@ class RecursiveClassComponent extends Component {
   // }
 
   revealInList = (state) => {
-    // this.setState({nested:state});
-    // this.setState({reveal:state});
-    // const parentKey = this.state.parent.key;
-    // if(parentKey !== this.state.obj.key && parentKey !== 'q-root'){
-    //   // console.log(parentKey, this.state.obj.key);
-    //   const rke = plex.get(this.state.parent.key);
-    //   // console.log(rke.instance);
-    //   rke.instance && rke.instance.revealInList(state);
-    // }
+    this.setState({nested:state});
+    this.setState({reveal:state});
+    const parentKey = this.state.parent.key;
+    if(parentKey !== this.state.obj.key && parentKey !== 'root'){
+      // console.log(parentKey, this.state.obj.key);
+      const rke = this.props.appFunctions.assets.plex.get(this.state.parent.key);
+      // console.log(rke.instance);
+      rke.instance && rke.instance.revealInList(state);
+    }
   }
 
   updateIndicesCount = () =>{
@@ -343,7 +343,7 @@ class RecursiveClassComponent extends Component {
     // parent // gross but streamlined to avoid a redraw of whole app.
     this.props.appFunctions.assets.plex.get(this.state.parent.key).instance.setState({updated:true});
 
-    const batch = {'key': this.state.obj.key, 'deleted': atomic(this.state.parent, this.state.obj, [])};
+    const batch = {'key': this.state.obj.key, 'label': this.state.obj.label, 'deleted': atomic(this.state.parent, this.state.obj, [])};
     this.props.appFunctions.saveDelta(batch, 'deleted').then((any) => this.props.appFunctions.saveAppState());
     delete this;
   }
@@ -526,7 +526,25 @@ const App = (props) => {
   //   return base_selected;
   // }
 
-  const appDeltaSelect = (toPosition) => {
+  const appDeltaSelect = (toPosition, did_unstash=null) => {
+    if(did_unstash) log('appDeltaSelect did_unstash', did_unstash);
+
+    if(did_unstash){
+      // const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
+      // log(flagged_deltas);
+      const deltas = {'action':'modify', 'ids':did_unstash, 'variable':[{key:'stash', value:false}]};
+
+      // not waiting for async call here.
+      saveApplicationState(deltas).then((save_dict) => log(save_dict.message));
+    }
+    // const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).map(fd => fd.id);
+    // log(flagged_deltas);
+
+    // const deltas = {'action':'stash', 'ids':flagged_deltas};
+
+    // const save_dict = await saveApplicationState(deltas);
+
+
     if(toPosition){
       const range = {'from':deltaPosition.to, 'to':toPosition, 'direction':null};
       if(range.from[0] !== range.to[0]){
@@ -582,14 +600,11 @@ const App = (props) => {
 
     if(now.to[0]!==0){
       log('not at zero');
-      const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).map(fd => fd.id);
-      log(flagged_deltas);
-
-      const deltas = {'action':'stash', 'ids':flagged_deltas};
-
+      const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
+      log('saveAppState', flagged_deltas);
+      const deltas = {'action':'modify', 'ids':flagged_deltas, 'variable':[{key:'stash', value:true},{key:'stash_on', value:[new Date()]}]};
       const save_dict = await saveApplicationState(deltas);
       log(save_dict.message);
-      // return;
     } 
     
 
@@ -602,7 +617,14 @@ const App = (props) => {
 
 
     console.log('saving app state to api...', assets.data);
+    // appHistoryList.current && appHistoryList.current.collapseAll();
+
     const save = await saveApplicationState(assets.data);
+    // const base_selected = {from:null, to:[0, util.date_timestamp(new Date())], 'direction':null, 'items':0};
+    // setDeltaPosition(base_selected);
+    deltaPosition.from = null;
+    deltaPosition.to = [0, util.date_timestamp(new Date())];
+
     log(save.message);
     // appReRender();
   }
@@ -773,6 +795,7 @@ const App = (props) => {
               select={appDeltaSelect} 
               reRender={appReRender} 
               source={assets.deltas.delta}
+              plex_source={assets.plex}
               />
             </div>
           </div>

@@ -1,222 +1,182 @@
 [
 	{
-		"key": "xgzjwvntxr",
-		"label": "DIVISION ",
-		"content": "In here is the issues: with deltas.",
+		"key": "u9ooms3nfv",
+		"label": "MARKET",
+		"content": "Some events depend on the existence of others.",
 		"children": [
 			{
-				"key": "rdnv9w2au2",
-				"label": "RELATE",
-				"content": "Need a way to flag deltas:",
+				"key": "uwray1dzce",
+				"label": "SEARCHLIGHT EFFECT",
+				"content": "In this context, the addition of TACET-APPROVAL depends on whether or not CARPET exists.",
+				"children": [],
+				"index": 0,
+				"delta_node_id": "nx6bpgv7ix"
+			},
+			{
+				"key": "m4akx44sw3",
+				"label": "CHIME",
+				"content": "The question is what to do if it doesn't. i.e.: add, delete, change-content, moved-to etc...",
+				"children": [],
+				"index": 1,
+				"delta_node_id": "uho7dx8dzg"
+			},
+			{
+				"key": "ova8knucey",
+				"label": "DRY SKELETON",
+				"content": "If the enclosing element is deleted, those things mean nothing. However;",
+				"children": [],
+				"index": 2,
+				"delta_node_id": "yjwo7be2v4"
+			},
+			{
+				"key": "lt1nwwotno",
+				"label": "APPLE",
+				"content": "The deltas should remain to be re-instated if enclosing element is un-deleted.",
+				"children": [],
+				"index": 3
+			},
+			{
+				"key": "ir0xwe386u",
+				"label": "DISRUPT",
+				"content": "DISRUPT — this might be as simple as whether or not the target exists.",
 				"children": [
 					{
-						"key": "16nrbkovm",
-						"label": "LOCAL",
-						"content": "Currently flagging (or attempting to flag) as \"stashed\".",
-						"children": [
-							{
-								"key": "9c2p28hpcj",
-								"label": "CUL DE SAC",
-								"content": "What is the workflow?",
-								"children": [
-									{
-										"key": "2qh1rf5v81",
-										"label": "SMALL",
-										"content": "state gets rewound to previous state because a delta was selected.",
-										"children": [],
-										"index": 0
-									},
-									{
-										"key": "k7awnqkuxe",
-										"label": "GERMS",
-										"content": "that delta is prior to now (index 0)",
-										"children": [],
-										"index": 1
-									},
-									{
-										"key": "xtwcboadgn",
-										"label": "TERM",
-										"content": "deltas prior to selection are flagged as \"stashed\"",
-										"children": [],
-										"index": 2
-									}
-								],
-								"index": 0,
-								"clicks": 0
-							}
-						],
+						"key": "767bi5pj1l",
+						"label": "UNIQUE",
+						"content": "a delta is orphaned if there's no node in the data_map.",
+						"children": [],
 						"index": 0,
-						"clicks": 0
-					},
-					{
-						"key": "u2w6wqa3bh",
-						"label": "FAIRE",
-						"content": "Determined that it's worth it to have the state-file and not persistently rebuild from deltas.",
-						"children": [
-							{
-								"key": "ruky6qd3l",
-								"label": "UNIQUE",
-								"content": "because of economy.",
-								"children": [],
-								"index": 0
-							}
-						],
-						"index": 1
+						"clicks": 1
 					}
 				],
-				"index": 0,
-				"delta_node_id": "ceg3b7limz",
-				"clicks": 2
+				"index": 4
 			}
 		],
 		"index": 0,
-		"clicks": 6
-	},
-	{
-		"key": "057jtq24jj",
-		"label": "BELL",
-		"content": "The loading is still terrible. The app loads-in before the css when built.",
-		"children": [
-			{
-				"key": "02nzjbnmrl",
-				"label": "FLAT",
-				"content": "Might be an issue with VITE.",
-				"children": [
-					{
-						"key": "76z9on9eyj",
-						"label": "GLASS",
-						"content": "https://github.com/vitejs/vite/issues/3924",
-						"children": [],
-						"index": 0
-					}
-				],
-				"index": 0,
-				"clicks": 1
-			},
-			{
-				"key": "0dv5v3mxex",
-				"label": "WORK",
-				"content": "Module call is moved to head.",
-				"children": [],
-				"index": 1
-			}
-		],
-		"index": 1,
-		"delta_node_id": "jfmqj5vhv6k",
 		"clicks": 1
 	},
 	{
-		"key": "wov62ri4pz",
-		"label": "TACET APPROVAL",
-		"content": "Now without the use of proxy in package.json.",
-		"children": [],
-		"index": 2
-	},
-	{
-		"key": "xq28eb3y62",
-		"label": "BIRD FEEDER",
-		"content": "BIRD FEEDERs",
+		"key": "pi1zrne66f",
+		"label": "CHOICE",
+		"content": "CHOICE-MEH",
+		"index": 1,
+		"fromParent": "root",
+		"delta_node_id": "qyogeducck",
 		"children": [
 			{
-				"key": "doy0wnn1ej",
-				"label": "FILL WITH WATER",
-				"content": "FILL WITH WATER",
-				"children": [],
-				"index": 0
-			}
-		],
-		"index": 3
-	},
-	{
-		"key": "a128yuxbsd",
-		"label": "CARPET",
-		"content": "Unsurprising operability.",
-		"toIndex": 2,
-		"toParent": "root",
-		"method": "added",
-		"delta_timer": "2023-06-10T11:35:50.540Z",
-		"id": "v220natjuv",
-		"children": [
-			{
-				"key": "quw45zeaz7",
-				"label": "ANTIGRAVITY TOOTHPASTE",
-				"content": "Stable operation in production.",
-				"toIndex": 3,
-				"toParent": "root",
-				"method": "added",
-				"delta_timer": "2023-06-10T11:37:16.290Z",
-				"id": "pxv9djz2k1",
-				"children": [
-					{
-						"key": "mpjexmjcycf",
-						"label": "MUSIC",
-						"content": "No really, that happened.",
-						"toIndex": 0,
-						"toParent": "quw45zeaz7",
-						"method": "added",
-						"delta_timer": "2023-06-10T11:37:41.076Z",
-						"id": "dwina3na49",
-						"children": [],
-						"index": 0,
-						"clicks": 2
-					},
-					{
-						"key": "0zv46ee35hl",
-						"label": "SEARCHLIGHT EFFECT",
-						"content": "Searchlight casting for faults in the clouds of illusion.",
-						"toIndex": 1,
-						"toParent": "quw45zeaz7",
-						"method": "added",
-						"delta_timer": "2023-06-10T11:37:52.074Z",
-						"id": "8oj3ctf8h8",
-						"children": [],
-						"index": 1,
-						"clicks": 2
-					},
-					{
-						"key": "7hho2d57jl",
-						"label": "REAL",
-						"content": "REAL",
-						"children": [],
-						"index": 2
-					}
-				],
+				"key": "a2rpdz472xh",
+				"label": "VOULOIR",
+				"content": "VOULOIR",
 				"index": 0,
-				"clicks": 6
+				"fromParent": "pi1zrne66f",
+				"delta_node_id": "qyogeducck",
+				"children": []
 			},
 			{
-				"key": "34g8jtyfjqf",
-				"label": "LINEAR BEARING",
-				"content": "https://i.stack.imgur.com/9UVnC.png",
+				"key": "k9zf6j73bj",
+				"label": "APRICOT",
+				"content": "APRICOT",
+				"index": 1,
+				"fromParent": "pi1zrne66f",
+				"delta_node_id": "qyogeducck",
+				"children": []
+			},
+			{
+				"key": "jhmif087pj",
+				"label": "ACTIVE",
+				"content": "ACTIVE",
+				"index": 2,
+				"fromParent": "pi1zrne66f",
+				"delta_node_id": "qyogeducck",
+				"children": []
+			},
+			{
+				"key": "468okq8bxm",
+				"label": "GAMMA RAY BURST",
+				"content": "GAMMA RAY BURST",
+				"index": 3,
+				"fromParent": "pi1zrne66f",
+				"delta_node_id": "qyogeducck",
+				"children": []
+			},
+			{
+				"key": "hwkceaaghk",
+				"label": "NORM",
+				"content": "NORM",
+				"index": 4,
+				"fromParent": "pi1zrne66f",
+				"delta_node_id": "qyogeducck",
+				"children": []
+			},
+			{
+				"key": "9h3ta1z1i4",
+				"label": "VARIABLY CLOUDY",
+				"content": "VARIABLY CLOUDY",
+				"index": 5,
+				"fromParent": "pi1zrne66f",
+				"delta_node_id": "qyogeducck",
+				"children": []
+			}
+		],
+		"clicks": 1
+	},
+	{
+		"key": "vzhx8j2z76",
+		"label": "IMPLIED",
+		"content": "IMPLIED",
+		"children": [
+			{
+				"key": "1xdb8wpzrn",
+				"label": "DAMAGE",
+				"content": "Implied axis of rotation",
+				"children": [],
+				"index": 0
+			},
+			{
+				"key": "f7ciqhhnbf",
+				"label": "DISTRIBUTION ",
+				"content": "Moving things around again",
 				"children": [],
 				"index": 1
 			}
 		],
-		"index": 4,
-		"clicks": 0
+		"index": 2,
+		"clicks": 1
 	},
 	{
-		"key": "wj4egfejg4",
-		"label": "TACET APPROVAL",
-		"content": "TERRIBLE DELTAS are SAVED",
+		"key": "i2ezuje4kc",
+		"label": "CARPET",
+		"content": "CARPET",
+		"index": 3,
+		"fromParent": "root",
+		"delta_node_id": "twgvjlk5j4",
 		"children": [
 			{
-				"key": "zeccrar7nxj",
-				"label": "YOLK",
-				"content": "YOLK",
+				"key": "ax2hq7jii5",
+				"label": "MIX",
+				"content": "MIX",
+				"index": 0,
+				"fromParent": "i2ezuje4kc",
+				"delta_node_id": "twgvjlk5j4",
+				"children": []
+			},
+			{
+				"key": "c7wpgjpwa9",
+				"label": "EIGHTY ONE",
+				"content": "EIGHTY TWO OR THREE",
+				"index": 1,
+				"fromParent": "i2ezuje4kc",
+				"delta_node_id": "twgvjlk5j4",
+				"children": []
+			},
+			{
+				"key": "vxzuwgj2ig",
+				"label": "TACET APPROVAL",
+				"content": "TACET APPROVAL",
 				"children": [],
-				"index": 0
+				"index": 2
 			}
 		],
-		"index": 5,
-		"delta_node_id": "lch2t7n32",
-		"clicks": 0
-	},
-	{
-		"key": "hyvqee75rg",
-		"label": "ANTIGRAVITY TOOTHPASTE",
-		"content": "I like the idea of this.",
-		"children": [],
-		"index": 6
+		"clicks": 2
 	}
 ]

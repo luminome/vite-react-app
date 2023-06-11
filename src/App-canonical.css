@@ -110,26 +110,6 @@ text-decoration-style: dotted; */
 }
 
 
-.delta-item {
-    /* color:gray; */
-    font-size: 50%;
-    overflow: hidden;
-    padding: 3px;
-}
-
-.delta-item-detail {
-    width: inherit;
-    font-size: 150%;
-    text-overflow: ellipsis;
-}
-
-.delta-item-detail-fine {
-    white-space: pre;
-}
-
-.delta-item-reveal {
-    background-color: var(--lite);
-}
 
 .node {
     /* margin: 8px 0 8px; */

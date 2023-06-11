@@ -1,21 +1,45 @@
+import './AppHistoryList.css';
 import React, {useState, useImperativeHandle} from "react";
 import * as util from './AppUtil'
-
+import { ReactSVG } from "react-svg";
 
 const DeltaRecordComponent = (props) =>{
-  
     const [isShown, setIsShown] = useState(false);
     const [isRevealed, setIsRevealed] = useState({key:null, state:false});
-    const time_stamp = props.object.delta_timer !== undefined ? util.date_timestamp(props.object.delta_timer) : util.date_timestamp(props.object.timer);
-  
+    const time_stamp = util.date_timestamp(props.object.delta_timer);
+
     let selected = props.select();
 
-    //const s = {start:selected.delta, end:null, direction:null, deltaNode:props.object};
-  
     const contactAppNode = (evt, key) => {
-        // evt.preventDefault();
-        selected = props.select([props.index, time_stamp]);
-        // setIsRevealed({key:key, state:!isRevealed.state});
+        evt.preventDefault();
+
+        if(!props.object.stash){
+            selected = props.select([props.index, time_stamp]);
+            const p = props.plex_source.get(key);
+            if(p){
+                console.log(p);
+                p.instance.revealInList(!isRevealed.state);
+            }else{
+                console.log('No plex at DeltaRecordComponent',props.index,key,p);
+            }
+            // setIsRevealed({key:key, state:!isRevealed.state});
+
+        }
+        
+    }
+
+    const unStash = (evt) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+        const unstashed = [];
+        for(let t = selected.to[0]-1; t >= props.index; t--){
+            unstashed.push(props.source[t].id);
+            delete props.source[t].stash;
+        }
+
+        // console.log('unstashed', unstashed);
+        // delete props.source[props.index].stash;
+        props.select([props.index, time_stamp], unstashed);
     }
   
     const produceDetail = () => {
@@ -24,32 +48,63 @@ const DeltaRecordComponent = (props) =>{
         <div className="delta-item-detail-fine">{jrb}</div>
       )
     }
+
+    const showFineDetail = (evt, key) => {
+        evt.preventDefault();
+        evt.stopPropagation();
+        console.log('key', key);
+        setIsRevealed({key:key, state:!isRevealed.state});
+    }
   
-    // (props.index !== selected.delta[0]) && (isRevealed.state = false) //({state:false});
+    const states = [
+        isShown,
+        isRevealed.state,
+        time_stamp === selected.to[1],
+        time_stamp >= selected.to[1],
+        props.object.stash
+    ]
+    const stateClasses = ['shown','reveal','current','previous','stash'];
+    const classNames = []; /// by default
+    states.map((st,n) => {if(st) classNames.push('delta-'+stateClasses[n])});
+
+
 
     return (
         <>
+
+        {states[2] &&
+            <div className="mini-text delta-marker"> CURRENT
+                {selected.to[0]} / {props.source.length} D:{selected.direction} {selected.items}
+            </div>
+        }
         <div 
         onMouseEnter={() => setIsShown(true)}
         onMouseLeave={() => setIsShown(false)}
-        className="delta-item">
-    
-        <div 
-        onClick={(e) => contactAppNode(e, props.object.key)} 
-        className={(isRevealed.state && "has-click delta-item-reveal") || 'has-click'} 
-        style={{
-            color: (isShown || isRevealed.state) && 'white', 
-            opacity: (!props.object.stash && time_stamp <= selected.to[1] ? 1.0 : 0.5),
-            borderTop: (time_stamp === selected.to[1]) && '1px white solid'
-        }}
-        >
-        
-        {util.date_day_time(props.object.delta_timer)}
-        {props.object.stash && 'stashed'}
-        <div className="delta-item-detail">{props.object.method} {props.object.content}</div>
-        {isRevealed.state && produceDetail()}
-        
+        className={"delta-item has-click "+classNames.join(' ')}
+        onClick={(e) => contactAppNode(e, props.object.key)}>
+
+        <div className="delta-item-date">
+
+            {util.date_day_time(props.object.delta_timer)}{props.object.stash && ' — stashed'}
+            <span className={"has-click "} onClick={(e) => showFineDetail(e, props.object.key)}>({!isRevealed.state ? "details":"hide details"})</span>
         </div>
+
+        <div className={'delta-el'} >
+            <div className='delta-left'>
+                {(states[3] && props.object.stash) && <ReactSVG src="./plush.svg" onClick={(e) => unStash(e)}/>}
+            </div>
+            <div className='delta-right'>
+                <div className="delta-item-detail">
+                    {props.object.method === 'deleted' ? `deleted (${props.object.deleted.length})` : props.object.method}&nbsp;
+                    {props.object.label}
+                    </div>
+                {(isRevealed.state) && produceDetail()} 
+                {/* // && states[2] */}
+            </div>
+            
+        </div>
+
+
         </div>
         </>
     );
@@ -102,9 +157,7 @@ const AppHistoryList = React.forwardRef((props, ref) => {
     
     return (
         <>
-        <div className="mini-text has-click" onClick={setPosition}>CURRENT
-            {selected.to[0]} / {props.source.length} D:{selected.direction} {selected.items}
-        </div>
+
 
         {props.source.map((d, index) => {
             const time_stamp = d.delta_timer ? util.date_timestamp(d.delta_timer) : util.date_timestamp(d.timer);
@@ -117,6 +170,8 @@ const AppHistoryList = React.forwardRef((props, ref) => {
                 key={`delta-${index}`} 
                 index={index} 
                 timer={time_stamp} 
+                plex_source={props.plex_source}
+                source={props.source}
                 object={{...d}}/>
             )
 

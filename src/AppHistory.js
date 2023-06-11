@@ -3,7 +3,7 @@ import * as util from './AppUtil'
 const ACTIONS = {
     findDeltaPreviousContent: (node, deltas) => {
         return deltas.filter((d) => 
-            (node.key === d.key) &&
+            (node.key === d.key && !d.stash) &&
             (d.method === 'changed-content' || d.method === 'added') &&
             (util.date_timestamp(d.delta_timer) < util.date_timestamp(node.delta_timer)))[0];
     },
@@ -78,11 +78,21 @@ const AppHistory = (selection, deltas, data_map, plex, complete) => {
         const timeframe = deltas.slice(a,b);
         selection.direction === 'REDO' && timeframe.reverse();
 
-        if(selection.direction){
-            for(let node of timeframe){
-                ACTIONS[node.method]({...node}, selection.direction, deltas, data_map);
-            }
+        for(let t=0; t<timeframe.length; t++){
+            const delta_node = timeframe[t];
+            
+            // moving down the list
+            if(delta_node.stash) continue; /// && selection.direction === 'UNDO'
+
+            ACTIONS[delta_node.method]({...delta_node}, selection.direction, deltas, data_map);
+
         }
+
+        // if(selection.direction){
+        //     for(let node of timeframe){
+        //         ACTIONS[node.method]({...node}, selection.direction, deltas, data_map);
+        //     }
+        // }
         complete();
     }else{
         return 'AppHistory standing still.';

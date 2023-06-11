@@ -1,0 +1,74 @@
+:root {
+    --stash: rgba(255,0,0, 0.9);
+    --subtle: rgba(72, 116, 133, 0.25);
+}
+
+.delta-marker{
+    padding: 3px;
+    background-color: green;
+}
+
+.delta-item {
+    overflow: hidden;
+    padding: 3px;
+    color:white;
+}
+
+.delta-el{
+    display:flex;
+    flex-direction: row;
+}
+.delta-left{
+    width:auto;
+}
+.delta-right{
+    flex: 1;
+}
+
+.delta-el .injected-svg{
+    margin-right: 4px;
+}
+
+.delta-el .injected-svg g {
+    fill: var(--stash);
+}
+
+.delta-el .injected-svg:hover g {
+    fill: #a9ecff;
+}
+
+
+.delta-item-date {
+    box-sizing: border-box;
+    color: gray;
+    font-size: 50%;
+    display:block;
+    pointer-events: all;
+}
+
+.delta-item-detail {
+    font-size: 75%;
+    width: inherit;
+    text-overflow: ellipsis;
+}
+
+.delta-item-detail-fine {
+    font-size: 50%;
+    white-space: pre;
+}
+
+.delta-item.delta-current {
+    background-color: var(--subtle);
+}
+
+.delta-current{
+    color: white;
+}
+
+.delta-stash{
+    color: var(--stash);
+}
+
+.delta-previous{
+    opacity:0.6;
+}

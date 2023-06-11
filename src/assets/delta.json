@@ -1,955 +1,746 @@
 {
 	"delta": [
 		{
-			"key": "v02o7qz0m8j",
-			"label": "INTERCAUSALITY ",
-			"content": "INTERCAUSALITY ",
+			"key": "pi1zrne66f",
+			"label": "CHOICE",
+			"content": "CHOICE",
 			"toIndex": 0,
 			"toParent": "root",
 			"method": "added",
-			"delta_timer": "2023-06-10T11:33:50.317Z",
-			"id": "2idgkwpe82"
+			"delta_timer": "2023-06-11T15:10:09.505Z",
+			"id": "e4l176j4vjg"
 		},
 		{
-			"key": "ai7m5bx8h8",
-			"label": "MIXED FEELINGS",
-			"content": "MIXED FEELINGS",
+			"key": "a2rpdz472xh",
+			"label": "VOULOIR",
+			"content": "VOULOIR",
 			"toIndex": 1,
 			"toParent": "root",
 			"method": "added",
-			"delta_timer": "2023-06-10T11:33:53.229Z",
-			"id": "rq5ocxd9jw"
+			"delta_timer": "2023-06-11T15:10:11.014Z",
+			"id": "dm3v989guo"
 		},
 		{
-			"key": "ai7m5bx8h8",
-			"label": "MIXED FEELINGS",
-			"content": "Poke me in the neck.",
+			"key": "k9zf6j73bj",
+			"label": "APRICOT",
+			"content": "APRICOT",
+			"toIndex": 2,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:10:11.485Z",
+			"id": "8mcasnip01"
+		},
+		{
+			"key": "jhmif087pj",
+			"label": "ACTIVE",
+			"content": "ACTIVE",
+			"toIndex": 3,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:10:12.014Z",
+			"id": "9yjgh6cnv9j"
+		},
+		{
+			"key": "468okq8bxm",
+			"label": "GAMMA RAY BURST",
+			"content": "GAMMA RAY BURST",
+			"toIndex": 4,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:10:12.562Z",
+			"id": "gd23ohk0vog"
+		},
+		{
+			"key": "hwkceaaghk",
+			"label": "NORM",
+			"content": "NORM",
+			"toIndex": 5,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:10:13.128Z",
+			"id": "cyjnfj39j9"
+		},
+		{
+			"key": "9h3ta1z1i4",
+			"label": "VARIABLY CLOUDY",
+			"content": "VARIABLY CLOUDY",
+			"toIndex": 6,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:10:13.938Z",
+			"id": "t6d53zyr3w"
+		},
+		{
+			"key": "9h3ta1z1i4",
+			"label": "VARIABLY CLOUDY",
+			"content": "VARIABLY CLOUDY",
+			"index": 0,
+			"fromIndex": 6,
+			"fromParent": "root",
+			"toIndex": 0,
+			"toParent": "pi1zrne66f",
+			"method": "moved",
+			"delta_timer": "2023-06-11T15:10:19.235Z",
+			"id": "81naxdq4jj"
+		},
+		{
+			"key": "hwkceaaghk",
+			"label": "NORM",
+			"content": "NORM",
+			"index": 0,
+			"fromIndex": 5,
+			"fromParent": "root",
+			"toIndex": 0,
+			"toParent": "pi1zrne66f",
+			"method": "moved",
+			"delta_timer": "2023-06-11T15:10:21.557Z",
+			"id": "vch5cvk76qj"
+		},
+		{
+			"key": "468okq8bxm",
+			"label": "GAMMA RAY BURST",
+			"content": "GAMMA RAY BURST",
+			"index": 0,
+			"fromIndex": 4,
+			"fromParent": "root",
+			"toIndex": 0,
+			"toParent": "pi1zrne66f",
+			"method": "moved",
+			"delta_timer": "2023-06-11T15:10:23.641Z",
+			"id": "rtqiw686bdi"
+		},
+		{
+			"key": "jhmif087pj",
+			"label": "ACTIVE",
+			"content": "ACTIVE",
+			"index": 0,
+			"fromIndex": 3,
+			"fromParent": "root",
+			"toIndex": 0,
+			"toParent": "pi1zrne66f",
+			"method": "moved",
+			"delta_timer": "2023-06-11T15:10:25.486Z",
+			"id": "41nkbag7pr"
+		},
+		{
+			"key": "k9zf6j73bj",
+			"label": "APRICOT",
+			"content": "APRICOT",
+			"index": 0,
+			"fromIndex": 2,
+			"fromParent": "root",
+			"toIndex": 0,
+			"toParent": "pi1zrne66f",
+			"method": "moved",
+			"delta_timer": "2023-06-11T15:10:27.242Z",
+			"id": "4tlud1i40i"
+		},
+		{
+			"key": "a2rpdz472xh",
+			"label": "VOULOIR",
+			"content": "VOULOIR",
+			"index": 0,
+			"fromIndex": 1,
+			"fromParent": "root",
+			"toIndex": 0,
+			"toParent": "pi1zrne66f",
+			"method": "moved",
+			"delta_timer": "2023-06-11T15:10:28.706Z",
+			"id": "8d9vs9z63i",
+			"stash": false,
+			"stash_on": [
+				"2023-06-11T15:11:44.191Z"
+			]
+		},
+		{
+			"key": "pi1zrne66f",
+			"label": "CHOICE",
+			"deleted": [
+				{
+					"key": "pi1zrne66f",
+					"label": "CHOICE",
+					"content": "CHOICE",
+					"index": 0,
+					"fromParent": "root"
+				},
+				{
+					"key": "a2rpdz472xh",
+					"label": "VOULOIR",
+					"content": "VOULOIR",
+					"index": 0,
+					"fromParent": "pi1zrne66f"
+				},
+				{
+					"key": "k9zf6j73bj",
+					"label": "APRICOT",
+					"content": "APRICOT",
+					"index": 1,
+					"fromParent": "pi1zrne66f"
+				},
+				{
+					"key": "jhmif087pj",
+					"label": "ACTIVE",
+					"content": "ACTIVE",
+					"index": 2,
+					"fromParent": "pi1zrne66f"
+				},
+				{
+					"key": "468okq8bxm",
+					"label": "GAMMA RAY BURST",
+					"content": "GAMMA RAY BURST",
+					"index": 3,
+					"fromParent": "pi1zrne66f"
+				},
+				{
+					"key": "hwkceaaghk",
+					"label": "NORM",
+					"content": "NORM",
+					"index": 4,
+					"fromParent": "pi1zrne66f"
+				},
+				{
+					"key": "9h3ta1z1i4",
+					"label": "VARIABLY CLOUDY",
+					"content": "VARIABLY CLOUDY",
+					"index": 5,
+					"fromParent": "pi1zrne66f"
+				}
+			],
+			"method": "deleted",
+			"delta_timer": "2023-06-11T15:10:39.247Z",
+			"id": "qyogeducck",
+			"stash": false,
+			"stash_on": [
+				"2023-06-11T15:11:44.191Z",
+				"2023-06-11T15:12:58.933Z",
+				"2023-06-11T15:16:40.392Z"
+			]
+		},
+		{
+			"key": "vomccugn7d",
+			"label": "CLIME",
+			"content": "CLIME",
+			"toIndex": 0,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:10:43.818Z",
+			"id": "kvxc9purde",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:11:44.191Z",
+				"2023-06-11T15:12:58.933Z",
+				"2023-06-11T15:16:40.392Z"
+			]
+		},
+		{
+			"key": "vomccugn7d",
+			"label": "CLIME",
+			"deleted": [
+				{
+					"key": "vomccugn7d",
+					"label": "CLIME",
+					"content": "CLIME",
+					"index": 0,
+					"fromParent": "root"
+				}
+			],
+			"method": "deleted",
+			"delta_timer": "2023-06-11T15:10:48.057Z",
+			"id": "1nbxfaxf17",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:11:44.191Z",
+				"2023-06-11T15:12:58.933Z",
+				"2023-06-11T15:16:40.392Z"
+			]
+		},
+		{
+			"key": "haoyl4l7xa",
+			"label": "MUSIC",
+			"content": "MUSIC",
+			"toIndex": 0,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:10:49.207Z",
+			"id": "kc8g3ptq13",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:11:44.191Z",
+				"2023-06-11T15:12:58.933Z",
+				"2023-06-11T15:16:40.392Z"
+			]
+		},
+		{
+			"key": "haoyl4l7xa",
+			"label": "MUSIC",
+			"content": "MUSIC is Alright",
+			"index": 0,
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:10:56.270Z",
+			"id": "h6285hhpy4",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:11:44.191Z",
+				"2023-06-11T15:12:58.933Z",
+				"2023-06-11T15:16:40.392Z"
+			]
+		},
+		{
+			"key": "fqwbkbhhkh",
+			"label": "LANGUAGE",
+			"content": "LANGUAGE",
+			"toIndex": 1,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:13:13.205Z",
+			"id": "h4y3vih3u2",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:16:40.392Z"
+			]
+		},
+		{
+			"key": "fqwbkbhhkh",
+			"label": "LANGUAGE",
+			"content": "LANGUAGE",
+			"index": 0,
+			"fromIndex": 1,
+			"fromParent": "root",
+			"toIndex": 0,
+			"toParent": "root",
+			"method": "moved",
+			"delta_timer": "2023-06-11T15:13:17.138Z",
+			"id": "2jy4em3sa3",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:16:40.392Z"
+			]
+		},
+		{
+			"key": "pi1zrne66f",
+			"label": "CHOICE",
+			"content": "CHOICE-M",
+			"index": 0,
+			"fromParent": "root",
+			"delta_node_id": "qyogeducck",
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:17:43.274Z",
+			"id": "aw20u2dyo2"
+		},
+		{
+			"key": "pi1zrne66f",
+			"label": "CHOICE",
+			"content": "CHOICE-MEH",
+			"index": 0,
+			"fromParent": "root",
+			"delta_node_id": "qyogeducck",
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:26:30.627Z",
+			"id": "jn7glir3wn"
+		},
+		{
+			"key": "vzhx8j2z76",
+			"label": "IMPLIED",
+			"content": "IMPLIED",
+			"toIndex": 1,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:30:32.125Z",
+			"id": "trzvw5z4t9"
+		},
+		{
+			"key": "1xdb8wpzrn",
+			"label": "DAMAGE",
+			"content": "DAMAGE",
+			"toIndex": 0,
+			"toParent": "vzhx8j2z76",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:30:38.274Z",
+			"id": "9geni7555qk"
+		},
+		{
+			"key": "1xdb8wpzrn",
+			"label": "DAMAGE",
+			"content": "Implied axis of rotation",
+			"index": 0,
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:30:49.177Z",
+			"id": "dikcnuwrmn"
+		},
+		{
+			"key": "f7ciqhhnbf",
+			"label": "DISTRIBUTION ",
+			"content": "DISTRIBUTION ",
+			"toIndex": 1,
+			"toParent": "vzhx8j2z76",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:30:56.436Z",
+			"id": "ykb7fumjfz"
+		},
+		{
+			"key": "f7ciqhhnbf",
+			"label": "DISTRIBUTION ",
+			"content": "Moving things around again",
 			"index": 1,
 			"method": "changed-content",
-			"delta_timer": "2023-06-10T11:34:01.831Z",
-			"id": "1vti1amido"
+			"delta_timer": "2023-06-11T15:31:08.425Z",
+			"id": "vrfi2u3dgvi"
 		},
 		{
-			"key": "a128yuxbsd",
+			"key": "i2ezuje4kc",
 			"label": "CARPET",
 			"content": "CARPET",
 			"toIndex": 2,
 			"toParent": "root",
 			"method": "added",
-			"delta_timer": "2023-06-10T11:35:50.540Z",
-			"id": "v220natjuv"
+			"delta_timer": "2023-06-11T15:31:35.383Z",
+			"id": "3ujy0vnxbh"
 		},
 		{
-			"key": "a128yuxbsd",
-			"label": "CARPET",
-			"content": "Unsurprising operability.",
-			"index": 2,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T11:36:04.492Z",
-			"id": "3hq931nzm9"
-		},
-		{
-			"key": "quw45zeaz7",
-			"label": "ANTIGRAVITY TOOTHPASTE",
-			"content": "ANTIGRAVITY TOOTHPASTE",
-			"toIndex": 3,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T11:37:16.308Z",
-			"id": "pxv9djz2k1"
-		},
-		{
-			"key": "quw45zeaz7",
-			"label": "ANTIGRAVITY TOOTHPASTE",
-			"content": "Stable operation in production.",
-			"index": 3,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T11:37:34.760Z",
-			"id": "j6z8xoe3h5"
-		},
-		{
-			"key": "mpjexmjcycf",
-			"label": "MUSIC",
-			"content": "MUSIC",
+			"key": "ax2hq7jii5",
+			"label": "MIX",
+			"content": "MIX",
 			"toIndex": 0,
-			"toParent": "quw45zeaz7",
+			"toParent": "i2ezuje4kc",
 			"method": "added",
-			"delta_timer": "2023-06-10T11:37:41.081Z",
-			"id": "dwina3na49"
+			"delta_timer": "2023-06-11T15:31:37.583Z",
+			"id": "grtmg90sg"
 		},
 		{
-			"key": "mpjexmjcycf",
-			"label": "MUSIC",
-			"content": "No really, that happened.",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T11:37:49.809Z",
-			"id": "mnsfxuvueb"
-		},
-		{
-			"key": "0zv46ee35hl",
+			"key": "1ecdfflz02",
 			"label": "SEARCHLIGHT EFFECT",
 			"content": "SEARCHLIGHT EFFECT",
 			"toIndex": 1,
-			"toParent": "quw45zeaz7",
+			"toParent": "i2ezuje4kc",
 			"method": "added",
-			"delta_timer": "2023-06-10T11:37:52.080Z",
-			"id": "8oj3ctf8h8"
+			"delta_timer": "2023-06-11T15:31:37.991Z",
+			"id": "ggf6626ya1"
 		},
 		{
-			"key": "0zv46ee35hl",
-			"label": "SEARCHLIGHT EFFECT",
-			"content": "Searchlight casting for faults in the clouds of illusion.",
-			"toIndex": 1,
-			"toParent": "quw45zeaz7",
+			"key": "c7wpgjpwa9",
+			"label": "EIGHTY ONE",
+			"content": "EIGHTY ONE",
+			"toIndex": 2,
+			"toParent": "i2ezuje4kc",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:31:39.133Z",
+			"id": "pb4zjscvsp"
+		},
+		{
+			"key": "c7wpgjpwa9",
+			"label": "EIGHTY ONE",
+			"content": "EIGHTY TWO OR THREE",
+			"index": 2,
 			"method": "changed-content",
-			"delta_timer": "2023-06-10T11:39:02.091Z",
-			"id": "r4gtq4f1hu",
-			"index": 1,
-			"clicks": 2
+			"delta_timer": "2023-06-11T15:31:52.536Z",
+			"id": "bz83o6c824"
 		},
 		{
-			"key": "quw45zeaz7",
-			"label": "ANTIGRAVITY TOOTHPASTE",
-			"content": "Stable operation in production.",
+			"key": "i2ezuje4kc",
+			"label": "CARPET",
+			"deleted": [
+				{
+					"key": "i2ezuje4kc",
+					"label": "CARPET",
+					"content": "CARPET",
+					"index": 2,
+					"fromParent": "root"
+				},
+				{
+					"key": "ax2hq7jii5",
+					"label": "MIX",
+					"content": "MIX",
+					"index": 0,
+					"fromParent": "i2ezuje4kc"
+				},
+				{
+					"key": "1ecdfflz02",
+					"label": "SEARCHLIGHT EFFECT",
+					"content": "SEARCHLIGHT EFFECT",
+					"index": 1,
+					"fromParent": "i2ezuje4kc"
+				},
+				{
+					"key": "c7wpgjpwa9",
+					"label": "EIGHTY ONE",
+					"content": "EIGHTY TWO OR THREE",
+					"index": 2,
+					"fromParent": "i2ezuje4kc"
+				}
+			],
+			"method": "deleted",
+			"delta_timer": "2023-06-11T15:32:09.873Z",
+			"id": "twgvjlk5j4",
+			"stash": false,
+			"stash_on": [
+				"2023-06-11T15:33:56.963Z",
+				"2023-06-11T15:42:20.384Z"
+			]
+		},
+		{
+			"key": "i6lgstie8w",
+			"label": "GAMMA RAY BURST",
+			"content": "GAMMA RAY BURST",
+			"toIndex": 2,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:33:04.700Z",
+			"id": "ax0y8w8zk8",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:33:56.963Z",
+				"2023-06-11T15:42:20.384Z"
+			]
+		},
+		{
+			"key": "i6lgstie8w",
+			"label": "GAMMA RAY BURST",
+			"content": "ASSUME A deletion took place...",
+			"index": 2,
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:33:22.174Z",
+			"id": "6j644qeu26",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:33:56.963Z",
+				"2023-06-11T15:42:20.384Z"
+			]
+		},
+		{
+			"key": "anghhrbrpf",
+			"label": "CHERRY",
+			"content": "CHERRY",
+			"toIndex": 2,
+			"toParent": "root",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:36:57.027Z",
+			"id": "csqa00lhwi",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:42:20.384Z"
+			]
+		},
+		{
+			"key": "anghhrbrpf",
+			"label": "CHERRY",
+			"content": "CHERRY",
+			"index": 0,
+			"fromIndex": 2,
+			"fromParent": "root",
 			"toIndex": 0,
 			"toParent": "root",
 			"method": "moved",
-			"delta_timer": "2023-06-10T11:39:25.480Z",
-			"id": "xjl1qteadq",
-			"index": 0,
-			"clicks": 0,
-			"fromIndex": 3,
-			"fromParent": "root"
+			"delta_timer": "2023-06-11T15:37:00.321Z",
+			"id": "6lkdazshnu",
+			"stash": true,
+			"stash_on": [
+				"2023-06-11T15:42:20.384Z"
+			]
 		},
 		{
-			"key": "arh23qy9a",
-			"label": "AIMER",
-			"content": "AIMER",
-			"toIndex": 2,
-			"toParent": "quw45zeaz7",
+			"key": "vxzuwgj2ig",
+			"label": "TACET APPROVAL",
+			"content": "TACET APPROVAL",
+			"toIndex": 3,
+			"toParent": "i2ezuje4kc",
 			"method": "added",
-			"delta_timer": "2023-06-10T11:42:02.400Z",
-			"id": "rklpy9oloul"
+			"delta_timer": "2023-06-11T15:42:35.363Z",
+			"id": "sd0bswwj2lj"
 		},
 		{
-			"key": "arh23qy9a",
-			"deleted": [
-				{
-					"key": "arh23qy9a",
-					"label": "AIMER",
-					"content": "AIMER",
-					"index": 2,
-					"fromParent": "quw45zeaz7"
-				}
-			],
-			"method": "deleted",
-			"delta_timer": "2023-06-10T11:42:19.883Z",
-			"id": "9w1ym7098u"
-		},
-		{
-			"key": "7hho2d57jl",
-			"label": "REAL",
-			"content": "REAL",
-			"toIndex": 2,
-			"toParent": "quw45zeaz7",
-			"method": "added",
-			"delta_timer": "2023-06-10T11:42:26.194Z",
-			"id": "8ihggkbxjz"
-		},
-		{
-			"key": "v02o7qz0m8j",
-			"deleted": [
-				{
-					"key": "v02o7qz0m8j",
-					"label": "INTERCAUSALITY ",
-					"content": "INTERCAUSALITY ",
-					"toIndex": 0,
-					"toParent": "root",
-					"method": "added",
-					"delta_timer": "2023-06-10T11:33:50.317Z",
-					"id": "2idgkwpe82",
-					"index": 1,
-					"fromParent": "root"
-				}
-			],
-			"method": "deleted",
-			"delta_timer": "2023-06-10T11:42:42.073Z",
-			"id": "nx8jmfe3g4"
-		},
-		{
-			"key": "ai7m5bx8h8",
-			"deleted": [
-				{
-					"key": "ai7m5bx8h8",
-					"label": "MIXED FEELINGS",
-					"content": "Poke me in the neck.",
-					"toIndex": 1,
-					"toParent": "root",
-					"method": "added",
-					"delta_timer": "2023-06-10T11:33:53.229Z",
-					"id": "rq5ocxd9jw",
-					"index": 1,
-					"clicks": 0,
-					"fromParent": "root"
-				}
-			],
-			"method": "deleted",
-			"delta_timer": "2023-06-10T11:42:55.479Z",
-			"id": "eo5qfa3k6w"
-		},
-		{
-			"key": "doy0wnn1ej",
-			"label": "FILL WITH WATER",
-			"content": "FILL WITH WATER",
-			"toIndex": 2,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T11:46:18.322Z",
-			"id": "gviri6xajf"
-		},
-		{
-			"key": "f2lsn7tf",
+			"key": "u9ooms3nfv",
 			"label": "MARKET",
 			"content": "MARKET",
 			"toIndex": 3,
 			"toParent": "root",
 			"method": "added",
-			"delta_timer": "2023-06-10T11:46:47.287Z",
-			"id": "052940bh5w"
+			"delta_timer": "2023-06-11T15:43:38.188Z",
+			"id": "p9hl4e5l6ij"
 		},
 		{
-			"key": "bim1tllp2g",
-			"label": "CARE",
-			"content": "CARE",
-			"toIndex": 4,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T11:48:17.427Z",
-			"id": "pkwci6pw06"
-		},
-		{
-			"key": "bim1tllp2g",
-			"deleted": [
-				{
-					"key": "bim1tllp2g",
-					"label": "CARE",
-					"content": "CARE",
-					"index": 4,
-					"fromParent": "root"
-				}
-			],
-			"method": "deleted",
-			"delta_timer": "2023-06-10T11:49:20.421Z",
-			"id": "ratf29txlu"
-		},
-		{
-			"key": "f2lsn7tf",
-			"deleted": [
-				{
-					"key": "f2lsn7tf",
-					"label": "MARKET",
-					"content": "MARKET",
-					"index": 3,
-					"fromParent": "root"
-				}
-			],
-			"method": "deleted",
-			"delta_timer": "2023-06-10T11:49:56.406Z",
-			"id": "4atjlcd8a5"
-		},
-		{
-			"key": "wov62ri4pz",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL",
-			"toIndex": 3,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T11:52:33.188Z",
-			"id": "nbzqwj7dvn"
-		},
-		{
-			"key": "wov62ri4pz",
-			"label": "TACET APPROVAL",
-			"content": "Now without the use of proxy in package.json.",
+			"key": "u9ooms3nfv",
+			"label": "MARKET",
+			"content": "Some events depend on the existence of others.",
 			"index": 3,
 			"method": "changed-content",
-			"delta_timer": "2023-06-10T11:53:00.136Z",
-			"id": "dof2tfoq6s"
+			"delta_timer": "2023-06-11T15:44:05.508Z",
+			"id": "vtavfboakf"
 		},
 		{
-			"key": "057jtq24jj",
-			"label": "BELL",
-			"content": "BELL",
+			"key": "uwray1dzce",
+			"label": "SEARCHLIGHT EFFECT",
+			"content": "SEARCHLIGHT EFFECT",
+			"toIndex": 0,
+			"toParent": "u9ooms3nfv",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:44:31.155Z",
+			"id": "y61aedh2pmi"
+		},
+		{
+			"key": "uwray1dzce",
+			"label": "SEARCHLIGHT EFFECT",
+			"content": "In this context, the addition of TACET-APPROVAL depends on whether or not CARPER exists.",
+			"index": 0,
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:45:15.533Z",
+			"id": "nx6bpgv7ix"
+		},
+		{
+			"key": "m4akx44sw3",
+			"label": "CHIME",
+			"content": "CHIME",
+			"toIndex": 1,
+			"toParent": "u9ooms3nfv",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:45:19.615Z",
+			"id": "7kvigzfv79"
+		},
+		{
+			"key": "m4akx44sw3",
+			"label": "CHIME",
+			"content": "The question is what to do if it doesn't.",
+			"index": 1,
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:45:35.516Z",
+			"id": "uho7dx8dzg"
+		},
+		{
+			"key": "uwray1dzce",
+			"label": "SEARCHLIGHT EFFECT",
+			"content": "In this context, the addition of TACET-APPROVAL depends on whether or not CARPET exists.",
+			"index": 0,
+			"delta_node_id": "nx6bpgv7ix",
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:45:40.155Z",
+			"id": "5svzw49w4g"
+		},
+		{
+			"key": "m4akx44sw3",
+			"label": "CHIME",
+			"content": "The question is what to do if it doesn't. i.e.: add, delete, change-content, moved-to etc...",
+			"index": 1,
+			"delta_node_id": "uho7dx8dzg",
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:46:33.129Z",
+			"id": "38ya4rskj3"
+		},
+		{
+			"key": "ova8knucey",
+			"label": "DRY SKELETON",
+			"content": "DRY SKELETON",
+			"toIndex": 2,
+			"toParent": "u9ooms3nfv",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:46:35.303Z",
+			"id": "yzrhwn8wd9"
+		},
+		{
+			"key": "ova8knucey",
+			"label": "DRY SKELETON",
+			"content": "If the enclosing element is deleted, those things mean nothing.",
+			"index": 2,
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:46:59.808Z",
+			"id": "yjwo7be2v4"
+		},
+		{
+			"key": "ova8knucey",
+			"label": "DRY SKELETON",
+			"content": "If the enclosing element is deleted, those things mean nothing. However;",
+			"index": 2,
+			"delta_node_id": "yjwo7be2v4",
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:47:34.926Z",
+			"id": "lz62zjv0cs"
+		},
+		{
+			"key": "lt1nwwotno",
+			"label": "APPLE",
+			"content": "APPLE",
+			"toIndex": 3,
+			"toParent": "u9ooms3nfv",
+			"method": "added",
+			"delta_timer": "2023-06-11T15:47:36.857Z",
+			"id": "fqdk656vsx"
+		},
+		{
+			"key": "lt1nwwotno",
+			"label": "APPLE",
+			"content": "The deltas should remain to be re-instated if enclosing element is un-deleted.",
+			"index": 3,
+			"method": "changed-content",
+			"delta_timer": "2023-06-11T15:48:15.558Z",
+			"id": "9wxc2ggb8q"
+		},
+		{
+			"key": "ir0xwe386u",
+			"label": "DISRUPT",
+			"content": "DISRUPT",
 			"toIndex": 4,
-			"toParent": "root",
+			"toParent": "u9ooms3nfv",
 			"method": "added",
-			"delta_timer": "2023-06-10T12:02:20.786Z",
-			"id": "uurtwwp52w"
+			"delta_timer": "2023-06-11T15:48:58.887Z",
+			"id": "z30g2ulhth"
 		},
 		{
-			"key": "057jtq24jj",
-			"label": "BELL",
-			"content": "The loading is still terrible.",
+			"key": "ir0xwe386u",
+			"label": "DISRUPT",
+			"content": "DISRUPT — this might be as simple as whether or not the target exists.",
 			"index": 4,
 			"method": "changed-content",
-			"delta_timer": "2023-06-10T15:23:50.137Z",
-			"id": "jfmqj5vhv6k"
+			"delta_timer": "2023-06-11T15:49:16.698Z",
+			"id": "mudyvqml68"
 		},
 		{
-			"key": "057jtq24jj",
-			"label": "BELL",
-			"content": "The loading is still terrible.",
-			"index": 0,
-			"fromIndex": 4,
-			"fromParent": "root",
-			"toIndex": 0,
-			"toParent": "root",
-			"method": "moved",
-			"delta_timer": "2023-06-10T15:23:58.809Z",
-			"id": "q2ydvdjg8q"
-		},
-		{
-			"key": "057jtq24jj",
-			"label": "BELL",
-			"content": "The loading is still terrible. The app loads-in before the css.",
-			"index": 4,
-			"delta_node_id": "jfmqj5vhv6k",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T15:24:14.880Z",
-			"id": "e2iigcy0w2"
-		},
-		{
-			"key": "02nzjbnmrl",
-			"label": "FLAT",
-			"content": "FLAT",
-			"toIndex": 0,
-			"toParent": "057jtq24jj",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:13:01.222Z",
-			"id": "fo3i3ptbus"
-		},
-		{
-			"key": "02nzjbnmrl",
-			"label": "FLAT",
-			"content": "Might be an issue with VITE.",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:13:11.314Z",
-			"id": "zrpf6uwb2n"
-		},
-		{
-			"key": "76z9on9eyj",
-			"label": "GLASS",
-			"content": "GLASS",
-			"toIndex": 0,
-			"toParent": "02nzjbnmrl",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:13:13.528Z",
-			"id": "chhjjmrbpc"
-		},
-		{
-			"key": "76z9on9eyj",
-			"label": "GLASS",
-			"content": "https://github.com/vitejs/vite/issues/3924",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:13:17.752Z",
-			"id": "ocjqmplog6f"
-		},
-		{
-			"key": "34g8jtyfjqf",
-			"label": "LINEAR BEARING",
-			"content": "LINEAR BEARING",
-			"toIndex": 0,
-			"toParent": "a128yuxbsd",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:13:50.294Z",
-			"id": "va7kaj2vmxf"
-		},
-		{
-			"key": "34g8jtyfjqf",
-			"label": "LINEAR BEARING",
-			"content": "https://i.stack.imgur.com/9UVnC.png",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:13:55.997Z",
-			"id": "1pdn9tqipn"
-		},
-		{
-			"key": "057jtq24jj",
-			"label": "BELL",
-			"content": "The loading is still terrible. The app loads-in before the css when built.",
-			"index": 0,
-			"delta_node_id": "jfmqj5vhv6k",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:14:58.413Z",
-			"id": "lf923fxel8"
-		},
-		{
-			"key": "0dv5v3mxex",
-			"label": "WORK",
-			"content": "WORK",
-			"toIndex": 1,
-			"toParent": "057jtq24jj",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:15:00.099Z",
-			"id": "cz1wnr33gi"
-		},
-		{
-			"key": "0dv5v3mxex",
-			"label": "WORK",
-			"content": "Module call is moved to head.",
-			"index": 1,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:15:21.075Z",
-			"id": "bmjwf4hggn"
-		},
-		{
-			"key": "xq28eb3y62",
-			"label": "BIRD FEEDER",
-			"content": "BIRD FEEDER",
-			"toIndex": 5,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:45:20.927Z",
-			"id": "qyfd0ir8kvk"
-		},
-		{
-			"key": "xgzjwvntxr",
-			"label": "DIVISION ",
-			"content": "DIVISION ",
-			"toIndex": 6,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:45:24.903Z",
-			"id": "djztcrxbya"
-		},
-		{
-			"key": "xgzjwvntxr",
-			"label": "DIVISION ",
-			"content": "In here is the issues: with deltas.",
-			"index": 6,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:45:41.691Z",
-			"id": "ykr1s99apv"
-		},
-		{
-			"key": "xgzjwvntxr",
-			"label": "DIVISION ",
-			"content": "In here is the issues: with deltas.",
-			"index": 0,
-			"fromIndex": 6,
-			"fromParent": "root",
-			"toIndex": 0,
-			"toParent": "root",
-			"method": "moved",
-			"delta_timer": "2023-06-10T16:45:45.984Z",
-			"id": "pep52e5561"
-		},
-		{
-			"key": "rdnv9w2au2",
-			"label": "RELATE",
-			"content": "RELATE",
-			"toIndex": 0,
-			"toParent": "xgzjwvntxr",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:46:05.551Z",
-			"id": "7x9eu3c41l"
-		},
-		{
-			"key": "rdnv9w2au2",
-			"label": "RELATE",
-			"content": "Need a way ",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:46:25.299Z",
-			"id": "ceg3b7limz"
-		},
-		{
-			"key": "rdnv9w2au2",
-			"label": "RELATE",
-			"content": "Need a way to flag deltas:",
-			"index": 0,
-			"delta_node_id": "ceg3b7limz",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:46:44.090Z",
-			"id": "icg5z1xbc2"
-		},
-		{
-			"key": "16nrbkovm",
-			"label": "LOCAL",
-			"content": "LOCAL",
-			"toIndex": 0,
-			"toParent": "rdnv9w2au2",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:46:47.967Z",
-			"id": "f0449xt0it"
-		},
-		{
-			"key": "16nrbkovm",
-			"label": "LOCAL",
-			"content": "Currently flagging (or attempting to flag) as \"stashed\".",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:47:15.796Z",
-			"id": "orby8zy3hi"
-		},
-		{
-			"key": "u2w6wqa3bh",
-			"label": "FAIRE",
-			"content": "FAIRE",
-			"toIndex": 1,
-			"toParent": "rdnv9w2au2",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:47:18.014Z",
-			"id": "qsmylyieerl"
-		},
-		{
-			"key": "u2w6wqa3bh",
-			"label": "FAIRE",
-			"content": "Determined that it's worth it to have the state-file and not persistently rebuild from deltas.",
-			"index": 1,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:47:55.648Z",
-			"id": "yaavqf93md"
-		},
-		{
-			"key": "9c2p28hpcj",
-			"label": "CUL DE SAC",
-			"content": "CUL DE SAC",
-			"toIndex": 0,
-			"toParent": "16nrbkovm",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:48:17.040Z",
-			"id": "px6inxuga8"
-		},
-		{
-			"key": "9c2p28hpcj",
-			"label": "CUL DE SAC",
-			"content": "What is the workflow?",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:48:28.845Z",
-			"id": "p43ttbs9bd"
-		},
-		{
-			"key": "2qh1rf5v81",
-			"label": "SMALL",
-			"content": "SMALL",
-			"toIndex": 0,
-			"toParent": "9c2p28hpcj",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:48:35.111Z",
-			"id": "jw1ehm55un"
-		},
-		{
-			"key": "2qh1rf5v81",
-			"label": "SMALL",
-			"content": "state gets rewound to previous state because a delta was selected.",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:49:06.187Z",
-			"id": "p0y3ksjdybf"
-		},
-		{
-			"key": "k7awnqkuxe",
-			"label": "GERMS",
-			"content": "GERMS",
-			"toIndex": 1,
-			"toParent": "9c2p28hpcj",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:49:09.553Z",
-			"id": "9wj08o9scz"
-		},
-		{
-			"key": "k7awnqkuxe",
-			"label": "GERMS",
-			"content": "that delta is prior to now (index 0)",
-			"index": 1,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:49:21.413Z",
-			"id": "x8h0qwwppf"
-		},
-		{
-			"key": "ruky6qd3l",
+			"key": "767bi5pj1l",
 			"label": "UNIQUE",
 			"content": "UNIQUE",
 			"toIndex": 0,
-			"toParent": "u2w6wqa3bh",
+			"toParent": "ir0xwe386u",
 			"method": "added",
-			"delta_timer": "2023-06-10T16:49:42.874Z",
-			"id": "8cw3u2xeqz"
+			"delta_timer": "2023-06-11T15:56:00.907Z",
+			"id": "r4qhsb7ne4i"
 		},
 		{
-			"key": "ruky6qd3l",
+			"key": "767bi5pj1l",
 			"label": "UNIQUE",
-			"content": "because of economy.",
+			"content": "a delta is orphaned if there's no node in the data_map.",
 			"index": 0,
+			"clicks": 1,
 			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:49:52.241Z",
-			"id": "w7f3kpn0vxj"
+			"delta_timer": "2023-06-11T15:56:31.658Z",
+			"id": "v5xv7is0f6"
 		},
 		{
-			"key": "xtwcboadgn",
-			"label": "TERM",
-			"content": "TERM",
-			"toIndex": 2,
-			"toParent": "9c2p28hpcj",
-			"method": "added",
-			"delta_timer": "2023-06-10T16:50:37.461Z",
-			"id": "p2a8z0fwq2"
+			"key": "1ecdfflz02",
+			"label": "SEARCHLIGHT EFFECT",
+			"deleted": [
+				{
+					"key": "1ecdfflz02",
+					"label": "SEARCHLIGHT EFFECT",
+					"content": "SEARCHLIGHT EFFECT",
+					"index": 1,
+					"fromParent": "i2ezuje4kc",
+					"delta_node_id": "twgvjlk5j4"
+				}
+			],
+			"method": "deleted",
+			"delta_timer": "2023-06-11T15:57:17.223Z",
+			"id": "eynsvaow85"
 		},
 		{
-			"key": "xtwcboadgn",
-			"label": "TERM",
-			"content": "deltas prior to selection are flagged as \"stashed\"",
-			"index": 2,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T16:51:04.085Z",
-			"id": "m7m7eancdnh"
-		},
-		{
-			"key": "doy0wnn1ej",
-			"label": "FILL WITH WATER",
-			"content": "FILL WITH WATER",
+			"key": "u9ooms3nfv",
+			"label": "MARKET",
+			"content": "Some events depend on the existence of others.",
 			"index": 0,
-			"fromIndex": 4,
-			"fromParent": "root",
-			"toIndex": 0,
-			"toParent": "xq28eb3y62",
-			"method": "moved",
-			"delta_timer": "2023-06-10T16:57:01.362Z",
-			"id": "jlc9cycubn"
-		},
-		{
-			"key": "a128yuxbsd",
-			"label": "CARPET",
-			"content": "Unsurprising operability.",
-			"toIndex": 4,
-			"toParent": "root",
-			"method": "moved",
-			"delta_timer": "2023-06-10T16:57:08.725Z",
-			"id": "btqkl2wz19",
-			"index": 4,
-			"clicks": 0,
+			"clicks": 1,
 			"fromIndex": 3,
-			"fromParent": "root"
-		},
-		{
-			"key": "quw45zeaz7",
-			"label": "ANTIGRAVITY TOOTHPASTE",
-			"content": "Stable operation in production.",
-			"toIndex": 0,
-			"toParent": "a128yuxbsd",
-			"method": "moved",
-			"delta_timer": "2023-06-10T16:57:17.326Z",
-			"id": "py5by9oq1k",
-			"index": 0,
-			"clicks": 6,
-			"fromIndex": 2,
-			"fromParent": "root"
-		},
-		{
-			"key": "xq28eb3y62",
-			"label": "BIRD FEEDER",
-			"content": "BIRD FEEDER",
-			"index": 3,
-			"fromIndex": 4,
 			"fromParent": "root",
-			"toIndex": 3,
+			"toIndex": 0,
 			"toParent": "root",
 			"method": "moved",
-			"delta_timer": "2023-06-10T17:00:03.733Z",
-			"id": "109s0yl5iy"
-		},
-		{
-			"key": "xq28eb3y62",
-			"label": "BIRD FEEDER",
-			"content": "BIRD FEEDERs",
-			"index": 3,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:05:01.965Z",
-			"id": "wepbmbt2t2"
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL",
-			"toIndex": 5,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:12:09.318Z",
-			"id": "zjimo37kph"
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL FOR TERRIBLE DELTAS",
-			"index": 5,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:12:19.680Z",
-			"id": "dwixbs8l3f"
-		},
-		{
-			"key": "bzy9r6r3n1",
-			"label": "GLEAN",
-			"content": "GLEAN",
-			"toIndex": 0,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:12:27.883Z",
-			"id": "pdt28nlx2s",
-			"stash": true
-		},
-		{
-			"key": "hpfnofq5nb",
-			"label": "GEOMETRIC EXPANSION",
-			"content": "GEOMETRIC EXPANSION",
-			"toIndex": 1,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:12:28.679Z",
-			"id": "peo6asa9zxk",
-			"stash": true
-		},
-		{
-			"key": "7pd7fnautmh",
-			"label": "VARIABLY CLOUDY",
-			"content": "VARIABLY CLOUDY",
-			"toIndex": 2,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:12:33.088Z",
-			"id": "4xiy0rlw3t",
-			"stash": true
-		},
-		{
-			"key": "vriy45y00u",
-			"label": "EYE",
-			"content": "EYE",
-			"toIndex": 3,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:12:33.548Z",
-			"id": "mbwk5tysx8",
-			"stash": true
-		},
-		{
-			"key": "0wy0unzq0e",
-			"label": "MUTUAL",
-			"content": "MUTUAL",
-			"toIndex": 4,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:12:34.065Z",
-			"id": "l6ie71d7r5",
-			"stash": true
-		},
-		{
-			"key": "3wmhgplxzv",
-			"label": "VARIABLY CLOUDY",
-			"content": "VARIABLY CLOUDY",
-			"toIndex": 5,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:12:36.967Z",
-			"id": "zopkzhunvu",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER",
-			"index": 5,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:14:06.681Z",
-			"id": "s4xg7k6588i",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER-1",
-			"index": 5,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:14:56.937Z",
-			"id": "7gozi0ohpk",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER-12",
-			"index": 5,
-			"delta_node_id": "7gozi0ohpk",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:15:00.201Z",
-			"id": "5viw8rdgdn",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER-2",
-			"index": 5,
-			"delta_node_id": "5viw8rdgdn",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:15:02.799Z",
-			"id": "792nutll03",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER-3",
-			"index": 5,
-			"delta_node_id": "792nutll03",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:15:06.305Z",
-			"id": "lch2t7n32",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER-4",
-			"index": 5,
-			"delta_node_id": "lch2t7n32",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:15:09.967Z",
-			"id": "hev4oi2z7jg",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER-INSTINCTIVE",
-			"index": 5,
-			"delta_node_id": "lch2t7n32",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:16:18.608Z",
-			"id": "1cdqxjztrs",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TACET APPROVAL ER-INSTINCTIVE",
-			"index": 4,
-			"delta_node_id": "lch2t7n32",
-			"fromIndex": 5,
-			"fromParent": "root",
-			"toIndex": 4,
-			"toParent": "root",
-			"method": "moved",
-			"delta_timer": "2023-06-10T17:17:04.211Z",
-			"id": "uwxih01yt8",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TERRIBLE DELTAS",
-			"index": 5,
-			"delta_node_id": "lch2t7n32",
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:41:46.662Z",
-			"id": "libkg2s030g"
-		},
-		{
-			"key": "zeccrar7nxj",
-			"label": "YOLK",
-			"content": "YOLK",
-			"toIndex": 0,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:42:04.189Z",
-			"id": "6epjgqs3m2"
-		},
-		{
-			"key": "zeccrar7nxj",
-			"label": "YOLK",
-			"content": "YOLK AND LITTLE CREAMS",
-			"index": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:42:12.733Z",
-			"id": "9nedbfx80n",
-			"stash": true
-		},
-		{
-			"key": "zzze7a02d",
-			"label": "TRANSPORT",
-			"content": "TRANSPORT",
-			"toIndex": 1,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:42:25.619Z",
-			"id": "ul658x9dox",
-			"stash": true
-		},
-		{
-			"key": "hy0rdlg1rl",
-			"label": "WALL",
-			"content": "WALL",
-			"toIndex": 2,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:42:27.809Z",
-			"id": "m4q7uhgnln",
-			"stash": true
-		},
-		{
-			"key": "rt5jn9542x",
-			"label": "DISPATCH",
-			"content": "DISPATCH",
-			"toIndex": 3,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:42:30.612Z",
-			"id": "eonh6mg1gk",
-			"stash": true
-		},
-		{
-			"key": "8g0swtpv63",
-			"label": "IMPLIED",
-			"content": "IMPLIED",
-			"toIndex": 4,
-			"toParent": "wj4egfejg4",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:42:31.735Z",
-			"id": "x6u7oa6qev",
-			"stash": true
-		},
-		{
-			"key": "wj4egfejg4",
-			"label": "TACET APPROVAL",
-			"content": "TERRIBLE DELTAS are SAVED",
-			"index": 5,
-			"delta_node_id": "lch2t7n32",
-			"clicks": 0,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:43:18.725Z",
-			"id": "2wf4r4uv7cf"
-		},
-		{
-			"key": "hyvqee75rg",
-			"label": "ANTIGRAVITY TOOTHPASTE",
-			"content": "ANTIGRAVITY TOOTHPASTE",
-			"toIndex": 6,
-			"toParent": "root",
-			"method": "added",
-			"delta_timer": "2023-06-10T17:43:54.829Z",
-			"id": "5acokbj164"
-		},
-		{
-			"key": "hyvqee75rg",
-			"label": "ANTIGRAVITY TOOTHPASTE",
-			"content": "I like the idea of this.",
-			"index": 6,
-			"method": "changed-content",
-			"delta_timer": "2023-06-10T17:44:06.030Z",
-			"id": "l8neo61vf7j"
+			"delta_timer": "2023-06-11T16:02:42.938Z",
+			"id": "ti12w7zcnf"
 		}
 	]
 }

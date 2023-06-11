@@ -43,8 +43,25 @@ async function saveDeltaRecord(deltaData=null) {
         const t = util.formatMs(new Date() - start_time);
 
         if(deltaData.hasOwnProperty('action')){
+            // assumes this is worker function
+            const [variable, value, action] = [deltaData.variable, deltaData.value, deltaData.action];
+
             currentRecord.delta.map((d)=>{
-                if(deltaData.ids.includes(d.id)) d[deltaData.action] = true;
+
+                if(deltaData.ids.includes(d.id)){
+                    if(Array.isArray(variable)){
+                        variable.map(g => {
+                            Array.isArray(g.value) && d[g.key] ? d[g.key].push(g.value[0]) : d[g.key] = g.value || (d[g.key] = g.value); 
+                        });
+                    }
+
+
+                    // if(action === 'unset'){
+                    //     delete d[variable];
+                    // }else{
+                    //     d[variable] = value;
+                    // }
+                }
             });
             // const message = `Has action flags:(${deltaData.action}) (${deltaData.ids.length}) items saved at ${t}`;
             // return {message: message};

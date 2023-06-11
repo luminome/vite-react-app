@@ -5,7 +5,7 @@ import { readFile } from 'fs/promises';
 import bodyParser from 'body-parser';
 import api_router from "./api-router.js";
 
-const PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 5000;
 const MODE = process.env.NODE_ENV || 'production';
 const package_info = JSON.parse(await readFile(new URL('../../package.json', import.meta.url)));
 
