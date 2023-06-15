@@ -327,6 +327,8 @@ class RecursiveClassComponent extends Component {
   };
 
   deleteThis = () => {
+    // original concept here is a terrible idea...there should be more marks for deletion:
+    // tracking individual deletions would be better. ? MAYBE NOT..order issues..
 
     const m_i = this.state.parent.children.findIndex(c => c.key === this.state.obj.key);
     this.state.parent.children.splice(m_i, 1);
@@ -470,6 +472,7 @@ class RecursiveClassComponent extends Component {
         {(this.state.data) && this.state.data.map((node, n) => {
           // console.log("node-drop", n, node);
           node.index = n;
+          node.parent = this.state.obj.key;
           return (
               <RecursiveClassComponent 
               level={this.state.level+1}
@@ -526,17 +529,24 @@ const App = (props) => {
   //   return base_selected;
   // }
 
+
   const appDeltaSelect = (toPosition, did_unstash=null) => {
     if(did_unstash) log('appDeltaSelect did_unstash', did_unstash);
 
     if(did_unstash){
-      // const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
-      // log(flagged_deltas);
-      const deltas = {'action':'modify', 'ids':did_unstash, 'variable':[{key:'stash', value:false}]};
-
-      // not waiting for async call here.
-      saveApplicationState(deltas).then((save_dict) => log(save_dict.message));
+      const flagged_deltas = [assets.deltas.delta[toPosition[0]].id];//;//.map(fd => fd.id);
+      console.log(assets.deltas.delta, toPosition, flagged_deltas);
+      const deltas = {'action':'modify', 'ids':flagged_deltas, 'variable':[{key:'stash', value:did_unstash === 'REDO' ? false : true}]};
+      saveApplicationState(deltas).then((save_dict) => console.log(save_dict.message));
     }
+    // if(did_unstash){
+    //   // const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
+    //   // log(flagged_deltas);
+    //   const deltas = {'action':'modify', 'ids':did_unstash, 'variable':[{key:'stash', value:false}]};
+
+    //   // not waiting for async call here.
+    //   saveApplicationState(deltas).then((save_dict) => log(save_dict.message));
+    // }
     // const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).map(fd => fd.id);
     // log(flagged_deltas);
 
@@ -546,14 +556,19 @@ const App = (props) => {
 
 
     if(toPosition){
-      const range = {'from':deltaPosition.to, 'to':toPosition, 'direction':null};
-      if(range.from[0] !== range.to[0]){
+      const range = {'from':!did_unstash ? deltaPosition.to : toPosition, 'to':toPosition, 'direction':did_unstash};
+      
+      if(!did_unstash && range.from[0] !== range.to[0]){
         range.direction = range.from[0] > range.to[0] ? 'REDO' : 'UNDO';
         range.items = Math.abs(range.from[0]-range.to[0]);
       } 
+
       console.log(range.from[0], range.to[0], range);
+      
       log(history.AppHistory(range, assets.deltas.delta, assets.data_map, assets.plex, appReRender));
+
       setDeltaPosition(range);
+
       return range;
 
     }else{
@@ -572,6 +587,7 @@ const App = (props) => {
 
     assets.data_map.set(node.key, node);
     const delta_node = {...node};
+
     delta_node.method = method;
     delta_node.children && delete delta_node.children;
     delta_node.delta_timer = new Date();
@@ -598,14 +614,14 @@ const App = (props) => {
   const saveAppState = async () => {
     const now = appDeltaSelect();
 
-    if(now.to[0]!==0){
-      log('not at zero');
-      const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
-      log('saveAppState', flagged_deltas);
-      const deltas = {'action':'modify', 'ids':flagged_deltas, 'variable':[{key:'stash', value:true},{key:'stash_on', value:[new Date()]}]};
-      const save_dict = await saveApplicationState(deltas);
-      log(save_dict.message);
-    } 
+    // if(now.to[0]!==0){
+    //   log('not at zero');
+    //   const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
+    //   log('saveAppState', flagged_deltas);
+    //   const deltas = {'action':'modify', 'ids':flagged_deltas, 'variable':[{key:'stash', value:true},{key:'stash_on', value:[new Date()]}]};
+    //   const save_dict = await saveApplicationState(deltas);
+    //   log(save_dict.message);
+    // } 
     
 
     // flagged_deltas.map(fd=>{
@@ -620,8 +636,10 @@ const App = (props) => {
     // appHistoryList.current && appHistoryList.current.collapseAll();
 
     const save = await saveApplicationState(assets.data);
+    
     // const base_selected = {from:null, to:[0, util.date_timestamp(new Date())], 'direction':null, 'items':0};
     // setDeltaPosition(base_selected);
+
     deltaPosition.from = null;
     deltaPosition.to = [0, util.date_timestamp(new Date())];
 
@@ -645,7 +663,6 @@ const App = (props) => {
 
   useEffect(() => {
     // https://stackoverflow.com/questions/57847626/using-async-await-inside-a-react-functional-component
-
     // WHAT IF THERE IS NO FILE AND ONLY DELTA?
     // IT NEEDS TO REASSEMBLE THE "FILE" FROM THE DELTAS.
 
@@ -752,20 +769,7 @@ const App = (props) => {
     
 
     <div className="App">
-    <div className="mini-text text-darker">
-        <img src={logo} className="App-logo" alt="logo" />
-        {message}
-        <span className="has-click" onClick={(evt) => addNodeToRoot(evt)}>more</span>
-        <span className="has-click" onClick={(evt) => saveAppState(evt)}>force-save</span>
-        <a
-        className="mini-text has-click"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-        >
-        Learn React
-        </a>
-        </div>
+
 
       <header className="App-header">
         
@@ -796,6 +800,7 @@ const App = (props) => {
               reRender={appReRender} 
               source={assets.deltas.delta}
               plex_source={assets.plex}
+              data_map={assets.data_map}
               />
             </div>
           </div>
@@ -806,6 +811,21 @@ const App = (props) => {
 
 
       </header>
+
+      <div className="mini-text text-darker">
+        <img src={logo} className="App-logo" alt="logo" />
+        {message}
+        <span className="has-click" onClick={(evt) => addNodeToRoot(evt)}>more</span>
+        <span className="has-click" onClick={(evt) => saveAppState(evt)}>force-save</span>
+        <a
+        className="mini-text has-click"
+        href="https://reactjs.org"
+        target="_blank"
+        rel="noopener noreferrer"
+        >
+        Learn React
+        </a>
+      </div>
 
     </div>
     

@@ -18,10 +18,14 @@ const ACTIONS = {
         }
     },
     'added': (node, dir, deltas, data_map) => {
+        // console.log(node);
         const toParent = data_map.get(node.toParent);
+        // const toParent = data_map.get(data_map.get(node.key).parent);
         if(dir === 'UNDO'){
             const a_i = toParent.children.findIndex(c => c.key === node.key);
             toParent.children.splice(a_i, 1);
+            data_map.get(node.key).status = 'inactive';
+            // data_map.delete(node.key);
         }else{
             const copyNode = {...node};
             copyNode.children = [];
@@ -41,6 +45,8 @@ const ACTIONS = {
             }else{
                 const d_i = parent.children.findIndex(c => c.key === d.key);
                 parent.children.splice(d_i, 1);
+                data_map.get(d.key).status = 'inactive';
+                // data_map.delete(d.key);
             }
             data_map.set(parent.key, parent);
         }
@@ -53,6 +59,7 @@ const ACTIONS = {
         const m_node = parent.children.splice(prev_index, 1)[0];
 
         into_parent.children.splice(dir === 'UNDO' ? node.fromIndex : node.toIndex, 0, m_node);
+
         data_map.set(parent.key, parent);
         data_map.set(into_parent.key, into_parent);
 
@@ -71,18 +78,55 @@ const ACTIONS = {
 
 const AppHistory = (selection, deltas, data_map, plex, complete) => {
     // remove plex atall.
-    
+    const dis = (el) => data_map.get(el) === undefined || data_map.get(el).status === 'inactive';
+
+    const getMapStatus = (detla_obj) => {
+
+        if(detla_obj.method === 'deleted'){
+            const k = deltas.find(s => s.key === detla_obj.key && s.method === 'added');
+            return k.stash === undefined ? false : k.stash;
+        }
+
+        if(detla_obj.method === 'added'){
+            return dis(detla_obj.toParent);//props.data_map.get(props.object.toParent) === undefined;
+        }
+
+        if(detla_obj.method === 'moved'){
+            return ['key','fromParent','toParent'].map(st => detla_obj[st] && dis(detla_obj[st])).includes(true);
+            // return ['key','fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
+            // return props.data_map.get(props.object.key) === undefined;
+        }
+        if(detla_obj.method === 'changed-content'){
+            return dis(detla_obj.key);
+            // return props.data_map.get(props.object.key) === undefined;
+        }
+        //return ['fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
+        return false;//props.data_map.get(props.object.key) === undefined;
+    }
+
 
     if(selection.direction){
+        // sweet jeebus, giraffe, elephants, cats
         const [a,b] = [Math.min(selection.from[0],selection.to[0]),Math.max(selection.from[0],selection.to[0])];
-        const timeframe = deltas.slice(a,b);
+        
+        const is_singleton = a === b && selection.direction !== null;
+        
+        const timeframe = is_singleton ? [deltas[a]] : deltas.slice(a,b);
+
         selection.direction === 'REDO' && timeframe.reverse();
+
+        // console.log('timeframe', timeframe,a,b);
 
         for(let t=0; t<timeframe.length; t++){
             const delta_node = timeframe[t];
             
+            // console.log(selection.direction, delta_node);
             // moving down the list
-            if(delta_node.stash) continue; /// && selection.direction === 'UNDO'
+            // const p = plex.get(delta_node.key);
+            /// || getMapStatus(delta_node)
+            // && !is_singleton
+
+            if(!is_singleton && (delta_node.stash || getMapStatus(delta_node))) continue; /// && selection.direction === 'UNDO'
 
             ACTIONS[delta_node.method]({...delta_node}, selection.direction, deltas, data_map);
 

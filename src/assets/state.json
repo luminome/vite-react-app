@@ -1,182 +1,27 @@
-[
-	{
-		"key": "u9ooms3nfv",
-		"label": "MARKET",
-		"content": "Some events depend on the existence of others.",
-		"children": [
-			{
-				"key": "uwray1dzce",
-				"label": "SEARCHLIGHT EFFECT",
-				"content": "In this context, the addition of TACET-APPROVAL depends on whether or not CARPET exists.",
-				"children": [],
-				"index": 0,
-				"delta_node_id": "nx6bpgv7ix"
-			},
-			{
-				"key": "m4akx44sw3",
-				"label": "CHIME",
-				"content": "The question is what to do if it doesn't. i.e.: add, delete, change-content, moved-to etc...",
-				"children": [],
-				"index": 1,
-				"delta_node_id": "uho7dx8dzg"
-			},
-			{
-				"key": "ova8knucey",
-				"label": "DRY SKELETON",
-				"content": "If the enclosing element is deleted, those things mean nothing. However;",
-				"children": [],
-				"index": 2,
-				"delta_node_id": "yjwo7be2v4"
-			},
-			{
-				"key": "lt1nwwotno",
-				"label": "APPLE",
-				"content": "The deltas should remain to be re-instated if enclosing element is un-deleted.",
-				"children": [],
-				"index": 3
-			},
-			{
-				"key": "ir0xwe386u",
-				"label": "DISRUPT",
-				"content": "DISRUPT — this might be as simple as whether or not the target exists.",
-				"children": [
-					{
-						"key": "767bi5pj1l",
-						"label": "UNIQUE",
-						"content": "a delta is orphaned if there's no node in the data_map.",
-						"children": [],
-						"index": 0,
-						"clicks": 1
-					}
-				],
-				"index": 4
-			}
-		],
-		"index": 0,
-		"clicks": 1
-	},
-	{
-		"key": "pi1zrne66f",
-		"label": "CHOICE",
-		"content": "CHOICE-MEH",
-		"index": 1,
-		"fromParent": "root",
-		"delta_node_id": "qyogeducck",
-		"children": [
-			{
-				"key": "a2rpdz472xh",
-				"label": "VOULOIR",
-				"content": "VOULOIR",
-				"index": 0,
-				"fromParent": "pi1zrne66f",
-				"delta_node_id": "qyogeducck",
-				"children": []
-			},
-			{
-				"key": "k9zf6j73bj",
-				"label": "APRICOT",
-				"content": "APRICOT",
-				"index": 1,
-				"fromParent": "pi1zrne66f",
-				"delta_node_id": "qyogeducck",
-				"children": []
-			},
-			{
-				"key": "jhmif087pj",
-				"label": "ACTIVE",
-				"content": "ACTIVE",
-				"index": 2,
-				"fromParent": "pi1zrne66f",
-				"delta_node_id": "qyogeducck",
-				"children": []
-			},
-			{
-				"key": "468okq8bxm",
-				"label": "GAMMA RAY BURST",
-				"content": "GAMMA RAY BURST",
-				"index": 3,
-				"fromParent": "pi1zrne66f",
-				"delta_node_id": "qyogeducck",
-				"children": []
-			},
-			{
-				"key": "hwkceaaghk",
-				"label": "NORM",
-				"content": "NORM",
-				"index": 4,
-				"fromParent": "pi1zrne66f",
-				"delta_node_id": "qyogeducck",
-				"children": []
-			},
-			{
-				"key": "9h3ta1z1i4",
-				"label": "VARIABLY CLOUDY",
-				"content": "VARIABLY CLOUDY",
-				"index": 5,
-				"fromParent": "pi1zrne66f",
-				"delta_node_id": "qyogeducck",
-				"children": []
-			}
-		],
-		"clicks": 1
-	},
-	{
-		"key": "vzhx8j2z76",
-		"label": "IMPLIED",
-		"content": "IMPLIED",
-		"children": [
-			{
-				"key": "1xdb8wpzrn",
-				"label": "DAMAGE",
-				"content": "Implied axis of rotation",
-				"children": [],
-				"index": 0
-			},
-			{
-				"key": "f7ciqhhnbf",
-				"label": "DISTRIBUTION ",
-				"content": "Moving things around again",
-				"children": [],
-				"index": 1
-			}
-		],
-		"index": 2,
-		"clicks": 1
-	},
-	{
-		"key": "i2ezuje4kc",
-		"label": "CARPET",
-		"content": "CARPET",
-		"index": 3,
-		"fromParent": "root",
-		"delta_node_id": "twgvjlk5j4",
-		"children": [
-			{
-				"key": "ax2hq7jii5",
-				"label": "MIX",
-				"content": "MIX",
-				"index": 0,
-				"fromParent": "i2ezuje4kc",
-				"delta_node_id": "twgvjlk5j4",
-				"children": []
-			},
-			{
-				"key": "c7wpgjpwa9",
-				"label": "EIGHTY ONE",
-				"content": "EIGHTY TWO OR THREE",
-				"index": 1,
-				"fromParent": "i2ezuje4kc",
-				"delta_node_id": "twgvjlk5j4",
-				"children": []
-			},
-			{
-				"key": "vxzuwgj2ig",
-				"label": "TACET APPROVAL",
-				"content": "TACET APPROVAL",
-				"children": [],
-				"index": 2
-			}
-		],
-		"clicks": 2
-	}
-]
+{
+	"state": [
+		{
+			"key": "dgcny75dkrk",
+			"label": "DRY SKELETON",
+			"content": "DRY SKELETON",
+			"children": [
+				{
+					"key": "v19b0fclw1",
+					"label": "NERVES",
+					"content": "NERVES",
+					"children": [],
+					"index": 0
+				},
+				{
+					"key": "dltd0wxz2dg",
+					"label": "TRANSPORT",
+					"content": "TRANSPORT",
+					"children": [],
+					"index": 1
+				}
+			],
+			"index": 0
+		}
+	],
+	"save_time": "2023-06-13T15:53:37.482Z"
+}

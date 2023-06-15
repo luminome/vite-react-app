@@ -3,13 +3,21 @@ import { promises as fs } from 'fs';
 import * as util from "../js/util.js";
 
 const api_router = express.Router();
-const words_sources = ['src/assets/words.txt','src/assets/words-two.txt'];
+const words_sources = ['src/assets/words.txt','src/assets/words-two.txt']; //'src/assets/words-three.txt'];//
 const state_file_path = 'src/assets/state.json';
 const delta_file_path = 'src/assets/delta.json';
 
+
+const basis = 'memory'; // memory or file
+
+const state_object = {state:[]};
+const delta_object = {delta:[]};
+
 const start_time = new Date();
 
-console.log('cwd', process.cwd());
+console.log('cwd', process.cwd(), `basis:${basis}`);
+
+
 
 async function loadWords() {
     const buf = words_sources.map(w => { 
@@ -30,13 +38,18 @@ const words = words_stacked.flat();
 
 
 async function saveDeltaRecord(deltaData=null) {
-    const ref = fs.readFile(delta_file_path)
-    .then((result) => {
-        return JSON.parse(result);
-    })
-    .catch((error) => { console.log(error) });
-    const currentRecord = await ref;
+    let currentRecord = null;
 
+    if(basis === 'file'){
+        const ref = fs.readFile(delta_file_path)
+        .then((result) => {
+            return JSON.parse(result);
+        })
+        .catch((error) => { console.log(error) });
+        currentRecord = await ref;
+    }else{
+        currentRecord = {...delta_object};
+    }
 
 
     if(deltaData){
@@ -71,18 +84,22 @@ async function saveDeltaRecord(deltaData=null) {
             currentRecord.delta.push(deltaData);
         }
             
-        
-        const blob = JSON.stringify(currentRecord, null, '\t');
-        const size = Number(new TextEncoder().encode(blob).length);
-        const message = `the delta file (${currentRecord.delta.length}) items (${util.formatBytes(size)}) was saved at ${t}`;
+        if(basis === 'file'){
+            const blob = JSON.stringify(currentRecord, null, '\t');
+            const size = Number(new TextEncoder().encode(blob).length);
+            const message = `the delta file (${currentRecord.delta.length}) items (${util.formatBytes(size)}) was saved at ${t}`;
 
-        const saveRef = fs.writeFile(delta_file_path, blob)
-        .then((any) => {
-            return {message: message};
-        })
-        .catch((error) => { console.log(error) });
+            const saveRef = fs.writeFile(delta_file_path, blob)
+            .then((any) => {
+                return {message: message};
+            })
+            .catch((error) => { console.log(error) });
 
-        return saveRef;
+            return saveRef;
+        }else{
+            return {message: deltaData}; ///currentRecord;
+        }
+
     }else{
         return currentRecord;
     }
@@ -90,26 +107,43 @@ async function saveDeltaRecord(deltaData=null) {
 }   
 
 async function loadApplicationState() {
-    const ref = fs.readFile(state_file_path)
-    .then((result) => {
-        return JSON.parse(result);
-    })
-    .catch((error) => { console.log(error) });
-    return ref;
+    if(basis === 'file'){
+        const ref = fs.readFile(state_file_path)
+        .then((result) => {
+            const state_object = JSON.parse(result);
+            return state_object.state;
+        })
+        .catch((error) => { console.log(error) });
+        return ref;
+    }else{
+        return state_object.state;
+    }
 }
 
 async function saveApplicationState(stateData) {
     const t = util.formatMs(new Date() - start_time);
-    stateData.save_time = new Date();
-    const blob = JSON.stringify(stateData, null, '\t');
-    const ref = fs.writeFile(state_file_path, blob)
-    .then((any) => {
-        const size = Number(new TextEncoder().encode(blob).length);
-        const message = `the state file (${util.formatBytes(size)}) was saved at ${t}`;
-        return {message: message};
-    })
-    .catch((error) => { console.log(error) });
-    return ref;
+
+    if(basis === 'file'){
+        // const t = util.formatMs(new Date() - start_time);
+        const state_object = {state:stateData, save_time:new Date()};
+
+        // stateData.save_time = new Date();
+        const blob = JSON.stringify(state_object, null, '\t');
+        const ref = fs.writeFile(state_file_path, blob)
+        .then((any) => {
+            const size = Number(new TextEncoder().encode(blob).length);
+            const message = `the state file (${util.formatBytes(size)}) was saved at ${t}`;
+            return {message: message};
+        })
+        .catch((error) => { console.log(error) });
+        return ref;
+    }else{
+        state_object.save_time = new Date();
+        state_object.state = [...stateData];
+        return {message: 'from memory'};
+        // stateData.save_time = new Date();
+
+    }
 }
 
 

@@ -3,6 +3,11 @@
     --subtle: rgba(72, 116, 133, 0.25);
 }
 
+.delta-test{
+    /* color:greenyellow !important; */
+    opacity:0.25 !important;
+}
+
 .delta-marker{
     padding: 3px;
     background-color: green;
