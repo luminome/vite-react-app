@@ -19,8 +19,7 @@ const getWordFromApi = async () => {
     return res; 
 };
 
-const saveApplicationState = async (state) => {
-  console.log(state);
+const saveApplicationState = async (data, method) => {
   const res = fetch('/api', {
     method: 'POST',
     headers: {
@@ -28,7 +27,7 @@ const saveApplicationState = async (state) => {
       'Accept': 'application/json, text/plain, */*',
       'Content-Type': 'application/json'
     },
-    body: JSON.stringify(state)
+    body: JSON.stringify({method:method, data:data})
   })
   .then((response) => response.json())
   .then(json => {return json});
@@ -48,6 +47,38 @@ const getDeltas = async () => {
   .then(json => {return json});
   return res;
 };
+
+const getConfig = async () => {
+  const res = fetch('/api?config')
+  .then((response) => response.json())
+  .then(json => {return json});
+  return res;
+};
+
+
+
+const apiPost = async (data, method) => {
+  const res = fetch('/api', {
+    method: 'POST',
+    headers: {
+      'mode':'cors',
+      'Accept': 'application/json, text/plain, */*',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({method:method, data:data})
+  })
+  .then((response) => response.json())
+  .then(json => {return json});
+  return res;
+};
+
+
+const apiGet = async (method) => {
+  const res = fetch(`/api?${method}`)
+  .then((response) => response.json())
+  .then(json => {return json});
+  return res;
+}
 
 
 let indices = 0;
@@ -188,6 +219,7 @@ class RecursiveClassComponent extends Component {
 
   constructor(props) {
     super(props);
+    
     //using setState on references breaks
     this.state = {
       data: props.data,
@@ -195,12 +227,13 @@ class RecursiveClassComponent extends Component {
       content: props.obj.content,
       parent: props.parent,
       level: props.level,
-      nested: false,
+      nested: props.config.nested,/// true, ///props.config !== undefined, // ? props.config.nested:  props.config.nested,
       nestedDeltas: false,
       reveal: false,
       updated: false
     };
 
+    // this.state.nested = true;
     if(this.state.obj.content === 'root') this.state.nested = true;
 
     this.plex = false;
@@ -212,7 +245,7 @@ class RecursiveClassComponent extends Component {
     this.nodeDropRef = {};
     this.inputActive = false;
     // this._Mounted = 0;
-    // console.log(props);
+    // console.log({...props}, props.config.nested);
   }
 
   setObjRef = () => {Object.assign(this.objRef, {...this.state.obj})};
@@ -222,7 +255,7 @@ class RecursiveClassComponent extends Component {
 
   getThisPlex = () => {
     this.plex = this.props.appFunctions.assets.plex.get(this.state.obj.key);
-    const get_deltas = () => this.props.appFunctions.assets.deltas.delta.filter((d) => (this.state.obj.key === d.key)).sort((a, b) => {a.delta_timer > b.delta_timer} );;
+    const get_deltas = () => this.props.appFunctions.assets.deltas.filter((d) => (this.state.obj.key === d.key)).sort((a, b) => {a.delta_timer > b.delta_timer} );;
 
     if(this.plex === undefined){
       this.props.appFunctions.assets.plex.set(this.state.obj.key, {deltas:get_deltas(), instance:this});
@@ -241,7 +274,7 @@ class RecursiveClassComponent extends Component {
 
   componentDidMount(){
     this.getThisPlex();
-
+    
 
 
     // // console.log('componentDidMount', this.state.obj);
@@ -261,6 +294,7 @@ class RecursiveClassComponent extends Component {
   }
 
   componentDidUpdate(prevProps, updatedProps) {
+    console.log(this.props.config);
     // this.getThisPlex();
     // console.log(prevProps, updatedProps, this);
     // this.setObjRef();
@@ -494,6 +528,7 @@ class RecursiveClassComponent extends Component {
               appFunctions={this.props.appFunctions}
               parentRef={this.nodeRef}
               indexAlt={n}
+              config={this.props.config}
               />
           );
         })}
@@ -522,6 +557,8 @@ class RecursiveClassComponent extends Component {
 
 const App = (props) => {
   const [assets, setAssets] = useState(false);
+  const [config, setConfig] = useState({nested:true});
+
   const [message, setMessage] = useState('no-message');
   const [rerender, setRerender] = useState(false);
 
@@ -535,14 +572,14 @@ const App = (props) => {
   const [deltaPosition, setDeltaPosition] = useState(base_selected);
 
   const hasInactiveStatus = (key, method, id, par=null) => {    
-    const s_all = assets.deltas.delta.filter(ps => ps.key === key).sort((a, b) => {a.delta_timer > b.delta_timer});
+    const s_all = assets.deltas.filter(ps => ps.key === key).sort((a, b) => {a.delta_timer > b.delta_timer});
     const added = s_all.find(c => c.method === 'added' && !c.stash) ? false : true;
     const deleted = s_all.find(c => c.method === 'deleted' && !c.stash) ? true : false;
     return deleted || added;// || deleted;
   }
 
   const deltaValidate = (node) => { //'key',
-    const s_all = assets.deltas.delta.filter(ps => ps.key === node.key).sort((a, b) => {a.delta_timer > b.delta_timer});
+    const s_all = assets.deltas.filter(ps => ps.key === node.key).sort((a, b) => {a.delta_timer > b.delta_timer});
     const p = ['parent','fromParent','toParent'].map(st => {
       return node[st] && 
       node[st] !== 'root' && 
@@ -567,20 +604,19 @@ const App = (props) => {
   const deltaSaveState = (delta_node) => {
     console.log(delta_node.label, delta_node.method, delta_node.status, 'changed');
     const deltas = {'action':'modify', 'ids':[delta_node.id], 'variable':[{key:'status', value:delta_node.status}]};
-    saveApplicationState(deltas).then((save_dict) => console.log(save_dict.message));
+    apiPost(deltas, 'delta').then((save_dict) => console.log(save_dict.message));
   }
 
   const appDeltaSelect = (toPosition, did_unstash=null) => {
     if(did_unstash) log('appDeltaSelect did_unstash', did_unstash);
 
     if(did_unstash){
-      const flagged_deltas = [assets.deltas.delta[toPosition[0]].id];//;//.map(fd => fd.id);
+      const flagged_deltas = [assets.deltas[toPosition[0]].id];
       console.log(assets.deltas.delta, toPosition, flagged_deltas);
       const deltas = {'action':'modify', 'ids':flagged_deltas, 'variable':[{key:'stash', value:did_unstash === 'REDO' ? false : true}]};
-      saveApplicationState(deltas).then((save_dict) => console.log(save_dict.message));
-
-      //if(!assets.deltas.delta[toPosition[0]].status) return deltaPosition;
-    
+      apiPost(deltas, 'delta')
+        .then((save_dict) => console.log(save_dict.message));
+        //then rewind and save.
     }
     // if(did_unstash){
     //   // const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
@@ -608,7 +644,7 @@ const App = (props) => {
 
       console.log(range.from[0], range.to[0], range);
       
-      log(history.AppHistory(range, assets.deltas.delta, assets.data_map, assets.plex, appReRender, deltaValidate));
+      log(history.AppHistory(range, assets.deltas, assets.data_map, assets.plex, appReRender, deltaValidate));
 
       setDeltaPosition(range);
 
@@ -630,14 +666,15 @@ const App = (props) => {
 
     if(method === 'deleted'){
       const delta_Push_delete_node = {...node};
+      delta_Push_delete_node.action = 'push-deleted';
       delta_Push_delete_node['push-deleted'].forEach(pd => {
         pd.method = method;
         pd.children && delete pd.children;
         pd.delta_timer = new Date();
         pd.id = util.keyGen();
       });
-      console.log('delta_Push_delete_node',delta_Push_delete_node);
-      const save_dict = await saveApplicationState(delta_Push_delete_node);
+      // console.log('delta_Push_delete_node', delta_Push_delete_node);
+      const save_dict = await apiPost(delta_Push_delete_node, 'delta');
       log(save_dict.message);
 
     }else{
@@ -660,9 +697,9 @@ const App = (props) => {
       
 
 
-      const save_dict = await saveApplicationState(delta_node);
+      const save_dict = await apiPost(delta_node, 'delta');
       
-      assets.deltas.delta.unshift(delta_node);
+      assets.deltas.unshift(delta_node);
       assets.data_map.get(delta_node.key).delta_node_id = delta_node.id;
 
       log(save_dict.message);
@@ -696,7 +733,7 @@ const App = (props) => {
     console.log('saving app state to api...', assets.data);
     // appHistoryList.current && appHistoryList.current.collapseAll();
 
-    const save = await saveApplicationState(assets.data);
+    const save = await apiPost(assets.data, 'state');
     
     // const base_selected = {from:null, to:[0, util.date_timestamp(new Date())], 'direction':null, 'items':0};
     // setDeltaPosition(base_selected);
@@ -708,8 +745,18 @@ const App = (props) => {
     // appReRender();
   }
 
+  const saveConfig = async (evt, obj) => {
+
+    const update = await apiPost(obj, 'config');
+    log(update.message);
+
+    Object.assign(config, obj);
+    setConfig({...config});
+    console.log(config, obj);
+  }
+
   const wipeAppState = async () =>{
-    const save_dict = await saveApplicationState({action:'wipe'});
+    const save_dict = await apiPost({action:'wipe'}, 'system');
     log(save_dict.message);
     window.location.reload();
   }
@@ -741,13 +788,22 @@ const App = (props) => {
       if(!appInitRef.current){
         appInitRef.current = true;
 
-        const collected_delta = await getDeltas();
-        const g_preload = await getApplicationState();
+        const [g_config, g_delta, g_preload] = await Promise.all(['config','delta','state'].map(async g => apiGet(g)));
+
+        // const g_config = await apiGet('config');
+        // const g_delta = await apiGet('delta');
+        // const g_preload = await apiGet('state');
+
+        const collected_delta = g_delta.data;
 
         // const root_obj = {key:'root', content:'root', children:[]};
-        const root_obj = {key:'root', content:'root', children:g_preload};
+        const root_obj = {key:'root', content:'root', children:g_preload.data};
         const data_map = new Map();
         data_map.set('root', root_obj);
+
+        log('init load', g_delta.message);
+        log('init load', g_preload.message);
+        log('init load', g_config.message);
 
         // for(let dl of collected_delta.delta){
 
@@ -767,7 +823,7 @@ const App = (props) => {
         const app_plex = new Map();
         
         
-        collected_delta.delta.reverse();
+        collected_delta.reverse();
 
 
 
@@ -779,14 +835,16 @@ const App = (props) => {
         atomic(root_obj, data_map);
     
         for (let [el_key] of data_map) {
-          const grp = collected_delta.delta.filter((el_n) => el_n.key === el_key).map(el_n => {return {...el_n}});
+          const grp = collected_delta.filter((el_n) => el_n.key === el_key).map(el_n => {return {...el_n}});
           app_plex.set(el_key, {deltas:grp, instance:null});
         }
 
         console.log('setting assets in place');
 
         //data here should be an aggregate...
+        setConfig({...g_config.data});
         setAssets({data:data_map.get('root').children, deltas:collected_delta, data_map:data_map, root:root_obj, plex:app_plex});
+
         // setAssets({data:g_preload, deltas:collected_delta, data_map:data_map, root:root_obj, plex:app_plex});
         
       }else{
@@ -830,6 +888,7 @@ const App = (props) => {
   }
 
   console.log('app render');//, base_selected, assets, appHistoryList);
+  console.log(assets.config);
   const functions = {appUpdateData, appDeltaSelect, saveDelta, saveAppState, setMessage, assets};
 
   return (
@@ -854,7 +913,8 @@ const App = (props) => {
                   data={assets.data} 
                   obj={assets.root} 
                   parent={assets.root} 
-                  appFunctions={functions}/>
+                  appFunctions={functions}
+                  config={config}/>
                 </DndProvider>
               </div>
             </div>
@@ -866,7 +926,7 @@ const App = (props) => {
               // selected={appDeltaSelected} 
               select={appDeltaSelect} 
               reRender={appReRender} 
-              source={assets.deltas.delta}
+              source={assets.deltas}
               plex_source={assets.plex}
               data_map={assets.data_map}
               deltaValidate = {deltaValidate}
@@ -878,8 +938,6 @@ const App = (props) => {
         </div>
         }
         
-
-
       </header>
 
       <div className="mini-text text-darker">
@@ -888,6 +946,7 @@ const App = (props) => {
         <span className="has-click" onClick={(evt) => addNodeToRoot(evt)}>more</span>&nbsp;
         <span className="has-click" onClick={(evt) => saveAppState(evt)}>force-save</span>&nbsp;
         <span className="has-click" onClick={(evt) => wipeAppState(evt)}>force-wipe</span>&nbsp;
+        <span className="has-click" onClick={(evt) => saveConfig(evt, {'nested':!config.nested})}>config-nested {config.nested !== undefined && config.nested.toString()}</span>&nbsp;
       </div>
 
     </div>

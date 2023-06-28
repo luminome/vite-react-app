@@ -178,11 +178,11 @@ const DeltaRecordComponent = (props) =>{
     return (
         <>
 
-        {states[2] &&
+        {/* {states[2] &&
             <div className="mini-text delta-marker"> CURRENT
                 {selected.to[0]} / {props.source.length} D:{selected.direction} {selected.items}
             </div>
-        }
+        } */}
 
         <div 
         onMouseEnter={() => setIsShown(true)}
