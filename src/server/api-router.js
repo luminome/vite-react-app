@@ -3,10 +3,9 @@ import { promises as fs } from 'fs';
 import * as util from "../js/util.js";
 
 const api_router = express.Router();
-const words_sources = ['src/assets/words.txt','src/assets/words-two.txt']; //'src/assets/words-three.txt'];//
+const words_sources = ['src/assets/words-four.txt','src/assets/words-three.txt'];//,'src/assets/words-two.txt']; //'src/assets/words-three.txt'];//
 const state_file_path = 'src/assets/state.json';
 const delta_file_path = 'src/assets/delta.json';
-
 
 const basis = 'memory'; // memory or file
 
@@ -32,6 +31,7 @@ async function loadWords() {
 }
 
 const words_stacked = await loadWords();
+
 const words = words_stacked.flat();
 // words are in memory now.
 
@@ -53,35 +53,59 @@ async function saveDeltaRecord(deltaData=null) {
 
 
     if(deltaData){
+        let result_message = ''
         const t = util.formatMs(new Date() - start_time);
+        // console.log(deltaData);
+
+        // if(deltaData.method === 'deleted'){
+        //     deltaData.deleted.forEach(d => {
+        //         currentRecord.delta.filter(df => df.key === d.key && df.key !== deltaData.key).map(dm => dm.resolves = false);
+        //     });
+        //     // deltaData.resolves = true;
+        // }
+
 
         if(deltaData.hasOwnProperty('action')){
+            
             // assumes this is worker function
             const [variable, value, action] = [deltaData.variable, deltaData.value, deltaData.action];
+            result_message = `action ${action}`;
 
-            currentRecord.delta.map((d)=>{
-
-                if(deltaData.ids.includes(d.id)){
-                    if(Array.isArray(variable)){
-                        variable.map(g => {
-                            Array.isArray(g.value) && d[g.key] ? d[g.key].push(g.value[0]) : d[g.key] = g.value || (d[g.key] = g.value); 
-                        });
+            if(action === 'modify'){
+                currentRecord.delta.map((d)=>{
+                    if(deltaData.ids.includes(d.id)){
+                        if(Array.isArray(variable)){
+                            variable.map(g => {
+                                Array.isArray(g.value) && d[g.key] ? d[g.key].push(g.value[0]) : d[g.key] = g.value || (d[g.key] = g.value); 
+                            });
+                        }
                     }
+                });
+            }
+            if(action === 'wipe'){
+                state_object.state = [];
+                delta_object.delta = [];
+            }
 
-
-                    // if(action === 'unset'){
-                    //     delete d[variable];
-                    // }else{
-                    //     d[variable] = value;
-                    // }
-                }
-            });
             // const message = `Has action flags:(${deltaData.action}) (${deltaData.ids.length}) items saved at ${t}`;
             // return {message: message};
         }else{
-            // assume normal delta addition
+            
+            // assume normal delta addition 'cept for deletion
             deltaData.delta_timer = new Date();
-            currentRecord.delta.push(deltaData);
+            // console.log(deltaData);
+            if(deltaData.hasOwnProperty('push-deleted')){
+                result_message = `delta 'push-deleted' ${deltaData['push-deleted'].length} items.`;
+                deltaData['push-deleted'] = deltaData['push-deleted'].reverse();
+                deltaData['push-deleted'].forEach(del => {
+                    currentRecord.delta.push(del);
+                });
+            }else{
+                result_message = `delta 'added-single'`;
+                currentRecord.delta.push(deltaData);
+            }
+            
+            // console.log(currentRecord);
         }
             
         if(basis === 'file'){
@@ -97,7 +121,7 @@ async function saveDeltaRecord(deltaData=null) {
 
             return saveRef;
         }else{
-            return {message: deltaData}; ///currentRecord;
+            return {message: result_message}; ///currentRecord;
         }
 
     }else{
@@ -189,8 +213,11 @@ api_router.get('/', async (req, res, next) => {
     }else{
         try {
             const n = () => Math.floor(Math.random()*words.length);
-            const data = {data:{'word':words[n()]}, meta:t};
+            const w = words.splice(n(),1);
+
+            const data = {data:{'word':w}, meta:t};
             return res.json(data);
+            
         } catch (err) {
             res.json(err.message);
             console.error(`generic Error`, err.message);

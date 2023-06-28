@@ -1,5 +1,6 @@
 const weekday = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-const keyGen = () => (Math.random() + 1).toString(36).substring(2);
+const keyGen = () => (Math.random() + 1).toString(36).substring(2,6).toUpperCase(); //
+
 const date_filter = (ti) => (typeof ti === 'string' || ti instanceof String) ? new Date(Date.parse(ti)) : ti;
 
 const date_time = (ti) => {

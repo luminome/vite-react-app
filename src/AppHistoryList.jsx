@@ -8,42 +8,77 @@ import { ReactSVG } from "react-svg";
 
 
 const DeltaRecordComponent = (props) =>{
+    const index = props.index;
+    // const isActive = props.object.status;
+
     const [isShown, setIsShown] = useState(false);
+    //const [isActive, setIsActive] = useState(props.object.status); /// === undefined ? true : props.object.status
     const [isRevealed, setIsRevealed] = useState({key:null, state:false});
+
     const time_stamp = util.date_timestamp(props.object.delta_timer);
     let selected = props.select();
 
-
     // need the data map here to check against
     // make sure this node is in the map.
-
-    const dis = (el) => props.data_map.get(el) === undefined || props.data_map.get(el).status === 'inactive';
+    // const dis = (el) => props.data_map.get(el) === undefined || props.data_map.get(el).status === 'inactive';
 
     const getMapStatus = () => {
-        if(props.object.method === 'deleted'){
-            const k = props.source.find(s => s.key === props.object.key && s.method === 'added');
-            // console.log('deletemap', k, k.stash);
-            return k.stash === undefined ? false : k.stash;
-            // 
-        }
-        // if(props.object.method === 'deleted'){
-        //     return dis(props.object.key);//props.data_map.get(props.object.toParent) === undefined;
-        // }
 
-        if(props.object.method === 'added'){
-            return dis(props.object.toParent);//props.data_map.get(props.object.toParent) === undefined;
-        }
-        if(props.object.method === 'moved'){
-            return ['key','fromParent','toParent'].map(st => props.object[st] && dis(props.object[st])).includes(true);
-            // return ['key','fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
-            // return props.data_map.get(props.object.key) === undefined;
-        }
-        if(props.object.method === 'changed-content'){
-            return dis(props.object.key);
-            // return props.data_map.get(props.object.key) === undefined;
-        }
-        //return ['fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
-        return false;//props.data_map.get(props.object.key) === undefined;
+
+        return props.deltaValidate(props.object);//props.object);
+
+        // // the new idea here would be to validate against the deltas of this key.
+        // // anywhere that has a not "stashed" "delete" method as the last entry invalidates this.
+
+
+
+
+
+
+
+
+
+
+        // // const s_all = props.source.filter(ps => ps.key === props.object.key);
+
+        // // const s_add = s_all.find(s => s.key === props.object.key && s.method === 'added');
+        // // // const s_del = s_all.find(s => s.key === props.object.key && s.method === 'deleted');
+        // // const a = !s_add || s_add.stash === undefined ? false : s_add.stash;
+        // // // const b = !s_del || s_del.stash === undefined ? false : s_del.stash;
+        // // const b = props.object.resolves === undefined ? true : props.object.resolves;
+        // // return a || !b;//detla_obj.resolves;// || b;
+
+        // //return a || props.object.resolves;// || b
+        // // console.log(props.object.method, k);
+
+
+
+        // if(props.object.method === 'deleted'){
+        //     const k = props.source.find(s => s.key === props.object.key && s.method === 'added');
+        //     // console.log('deletemap', k, k.stash);
+        //     const stash = k.stash === undefined ? false : k.stash;
+        //     // const status = k.status === undefined ? false : k.status;
+        //     return (stash);// || dis(props.object.fromParent));// || status);// || dis(props.object.key));
+        //     // 
+        // }
+        // // if(props.object.method === 'deleted'){
+        // //     return dis(props.object.key);//props.data_map.get(props.object.toParent) === undefined;
+        // // }
+
+        // if(props.object.method === 'added'){
+        //     return dis(props.object.toParent);//props.data_map.get(props.object.toParent) === undefined;
+        // }
+        // if(props.object.method === 'moved'){
+        //     return ['key','fromParent','toParent'].map(st => props.object[st] && dis(props.object[st])).includes(true);
+        //     // return ['key','fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
+        //     // return props.data_map.get(props.object.key) === undefined;
+        // }
+        // if(props.object.method === 'changed-content'){
+        //     return dis(props.object.key);
+        //     // return props.data_map.get(props.object.key) === undefined;
+        // }
+        // return ['fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
+        // //return false;//props.data_map.get(props.object.key) === undefined;
     }
 
 
@@ -82,7 +117,7 @@ const DeltaRecordComponent = (props) =>{
     }
   
     const produceDetail = () => {
-      const jrb = JSON.stringify(props.object, null, '\t');
+      const jrb = JSON.stringify(props.source[index], null, '\t');
       return (
         <div className="delta-item-detail-fine">{jrb}</div>
       )
@@ -100,12 +135,12 @@ const DeltaRecordComponent = (props) =>{
         evt.stopPropagation();
         console.log(props.index, key, props.object.stash);
 
-        // if this is stached, unstache it
+        // if this is stached, unstache it, if it's got valid status
         const is_stached = props.object.stash !== undefined ? props.object.stash : false;
+
         console.log(['UNDO','REDO'][+is_stached]);
 
         selected = props.select([props.index, time_stamp], ['UNDO','REDO'][+is_stached]);
-
 
         props.source[props.index].stash = !is_stached; // here, save the state of this node.
         // need callback to main app...oui et non
@@ -114,15 +149,24 @@ const DeltaRecordComponent = (props) =>{
     }
 
     const n_status = getMapStatus();
-    props.source[props.index].status = n_status;
+
+    if(props.object.status !== !n_status){
+        props.source[props.index].status = !n_status;
+        props.object.status = !n_status;
+        props.deltaSaveState(props.object);
+    }
+
+
+
+    
   
     const states = [
         isShown,
         isRevealed.state,
-        time_stamp === selected.to[1],
+        index === selected.to[0], // time_stamp === selected.to[1],
         time_stamp >= selected.to[1],
         props.object.stash,
-        n_status 
+        !props.object.status && !props.object.stash
     ]
 
     const stateClasses = ['shown','reveal','current','previous','stash','test'];
@@ -158,7 +202,8 @@ const DeltaRecordComponent = (props) =>{
             </div>
             <div className='delta-right'>
                 <div className="delta-item-detail">
-                    {props.object.method === 'deleted' ? `deleted (${props.object.deleted.length})` : props.object.method}&nbsp;
+                    {/* {props.object.method === 'deleted' ? `deleted (${props.object.deleted.length})` : props.object.method}&nbsp; */}
+                    {props.object.method}&nbsp;
                     {props.object.label}
                     </div>
                 {(isRevealed.state) && produceDetail()} 
@@ -236,7 +281,9 @@ const AppHistoryList = React.forwardRef((props, ref) => {
                 plex_source={props.plex_source}
                 source={props.source}
                 data_map={props.data_map}
-                object={{...d}}/>
+                object={{...d}}
+                deltaValidate={props.deltaValidate}
+                deltaSaveState={props.deltaSaveState}/>
             )
 
         })}

@@ -8,7 +8,7 @@ const ACTIONS = {
             (util.date_timestamp(d.delta_timer) < util.date_timestamp(node.delta_timer)))[0];
     },
     'changed-content': (node, dir, deltas, data_map) => {
-        console.log('changed-contents ->', node.key, dir);
+        // console.log('changed-contents ->', node.key, dir);
         const nNode = data_map.get(node.key);
         if(dir === 'UNDO'){
             const pNode = ACTIONS.findDeltaPreviousContent(node, deltas);
@@ -24,7 +24,7 @@ const ACTIONS = {
         if(dir === 'UNDO'){
             const a_i = toParent.children.findIndex(c => c.key === node.key);
             toParent.children.splice(a_i, 1);
-            data_map.get(node.key).status = 'inactive';
+            // data_map.get(node.key).status = 'inactive';
             // data_map.delete(node.key);
         }else{
             const copyNode = {...node};
@@ -34,22 +34,48 @@ const ACTIONS = {
         }
     },
     'deleted': (node, dir, deltas, data_map) => {
-        for (let d of node.deleted) {
-            const parent = data_map.get(d.fromParent);
+        //const d = node;
+        //for (let d of node.deleted) {
+            const parent = data_map.get(node.fromParent);
             if(dir === 'UNDO'){
-                const del_node = { ...d };
+                const del_node = { ...node };
                 del_node.delta_node_id = node.id;
                 del_node.children = [];
-                parent.children.splice(d.index, 0, del_node);
-                data_map.set(d.key, del_node);
+                parent.children.splice(node.index, 0, del_node);
+                data_map.set(node.key, del_node);
             }else{
-                const d_i = parent.children.findIndex(c => c.key === d.key);
+                const d_i = parent.children.findIndex(c => c.key === node.key);
                 parent.children.splice(d_i, 1);
-                data_map.get(d.key).status = 'inactive';
+                // data_map.get(d.key).status = 'inactive';
                 // data_map.delete(d.key);
             }
+            
+            //
+            //deltas.filter(df => df.key === d.key && df.key !== node.key).map(dm => dm.resolves = dir === 'UNDO');
+            // node.resolves = true;
+
             data_map.set(parent.key, parent);
-        }
+        //}
+        // for (let d of node.deleted) {
+        //     const parent = data_map.get(d.fromParent);
+        //     if(dir === 'UNDO'){
+        //         const del_node = { ...d };
+        //         del_node.delta_node_id = node.id;
+        //         del_node.children = [];
+        //         parent.children.splice(d.index, 0, del_node);
+        //         data_map.set(d.key, del_node);
+        //     }else{
+        //         const d_i = parent.children.findIndex(c => c.key === d.key);
+        //         parent.children.splice(d_i, 1);
+        //         // data_map.get(d.key).status = 'inactive';
+        //         // data_map.delete(d.key);
+        //     }
+        //     //
+        //     deltas.filter(df => df.key === d.key && df.key !== node.key).map(dm => dm.resolves = dir === 'UNDO');
+        //     // node.resolves = true;
+
+        //     data_map.set(parent.key, parent);
+        // }
     },
     'moved': (node, dir, deltas, data_map) => {
         const parent = data_map.get(dir === 'UNDO' ? node.toParent : node.fromParent);
@@ -76,37 +102,17 @@ const ACTIONS = {
 
 
 
-const AppHistory = (selection, deltas, data_map, plex, complete) => {
+
+
+const AppHistory = (selection, deltas, data_map, plex, complete, deltaValidate) => {
     // remove plex atall.
-    const dis = (el) => data_map.get(el) === undefined || data_map.get(el).status === 'inactive';
 
-    const getMapStatus = (detla_obj) => {
-
-        if(detla_obj.method === 'deleted'){
-            const k = deltas.find(s => s.key === detla_obj.key && s.method === 'added');
-            return k.stash === undefined ? false : k.stash;
-        }
-
-        if(detla_obj.method === 'added'){
-            return dis(detla_obj.toParent);//props.data_map.get(props.object.toParent) === undefined;
-        }
-
-        if(detla_obj.method === 'moved'){
-            return ['key','fromParent','toParent'].map(st => detla_obj[st] && dis(detla_obj[st])).includes(true);
-            // return ['key','fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
-            // return props.data_map.get(props.object.key) === undefined;
-        }
-        if(detla_obj.method === 'changed-content'){
-            return dis(detla_obj.key);
-            // return props.data_map.get(props.object.key) === undefined;
-        }
-        //return ['fromParent','toParent'].map(st => props.object[st] && props.data_map.get(props.object[st]) === undefined).includes(true);
-        return false;//props.data_map.get(props.object.key) === undefined;
-    }
+    // const getMapStatus = (detla_obj) => {        
+    //     return deltaValidate(detla_obj);
+    // }
 
 
     if(selection.direction){
-        // sweet jeebus, giraffe, elephants, cats
         const [a,b] = [Math.min(selection.from[0],selection.to[0]),Math.max(selection.from[0],selection.to[0])];
         
         const is_singleton = a === b && selection.direction !== null;
@@ -115,28 +121,12 @@ const AppHistory = (selection, deltas, data_map, plex, complete) => {
 
         selection.direction === 'REDO' && timeframe.reverse();
 
-        // console.log('timeframe', timeframe,a,b);
-
         for(let t=0; t<timeframe.length; t++){
             const delta_node = timeframe[t];
-            
-            // console.log(selection.direction, delta_node);
-            // moving down the list
-            // const p = plex.get(delta_node.key);
-            /// || getMapStatus(delta_node)
-            // && !is_singleton
-
-            if(!is_singleton && (delta_node.stash || getMapStatus(delta_node))) continue; /// && selection.direction === 'UNDO'
-
+            if(!is_singleton && (delta_node.stash || !delta_node.status || deltaValidate(delta_node))) continue; 
             ACTIONS[delta_node.method]({...delta_node}, selection.direction, deltas, data_map);
-
         }
 
-        // if(selection.direction){
-        //     for(let node of timeframe){
-        //         ACTIONS[node.method]({...node}, selection.direction, deltas, data_map);
-        //     }
-        // }
         complete();
     }else{
         return 'AppHistory standing still.';
