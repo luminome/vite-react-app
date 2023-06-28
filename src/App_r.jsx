@@ -154,12 +154,13 @@ const DraggableFunctionComponent = (props) =>{
     item.nodeRef.current.style.opacity = 1.0;
     const destinationObject = item.referenceType === 'sibling' ? props.nodeParent : props.node;
 
-    if(item.node.label !== node.label){
-      const pref = item.nodeParent.children.splice(item.node.index, 1)[0];
-      destinationObject.children.splice(item.toIndex, 0, pref);
-      
-      props.confirm(item, destinationObject);
-    }
+    props.confirm(item, destinationObject);
+
+    // if(item.node.label !== node.label){
+    //   const pref = item.nodeParent.children.splice(item.node.index, 1)[0];
+    //   destinationObject.children.splice(item.toIndex, 0, pref);
+    //   props.confirm(item, destinationObject);
+    // }
 
     setStartDrag(false);
   }
@@ -221,7 +222,7 @@ class RecursiveClassComponent extends Component {
 
   getThisPlex = () => {
     this.plex = this.props.appFunctions.assets.plex.get(this.state.obj.key);
-    const get_deltas = () => this.props.appFunctions.assets.deltas.delta.filter((d) => (this.state.obj.key === d.key));
+    const get_deltas = () => this.props.appFunctions.assets.deltas.delta.filter((d) => (this.state.obj.key === d.key)).sort((a, b) => {a.delta_timer > b.delta_timer} );;
 
     if(this.plex === undefined){
       this.props.appFunctions.assets.plex.set(this.state.obj.key, {deltas:get_deltas(), instance:this});
@@ -329,6 +330,7 @@ class RecursiveClassComponent extends Component {
   deleteThis = () => {
     // original concept here is a terrible idea...there should be more marks for deletion:
     // tracking individual deletions would be better. ? MAYBE NOT..order issues..
+    // don't track individual deletions but mark all deltas of deleted nodes.
 
     const m_i = this.state.parent.children.findIndex(c => c.key === this.state.obj.key);
     this.state.parent.children.splice(m_i, 1);
@@ -345,7 +347,8 @@ class RecursiveClassComponent extends Component {
     // parent // gross but streamlined to avoid a redraw of whole app.
     this.props.appFunctions.assets.plex.get(this.state.parent.key).instance.setState({updated:true});
 
-    const batch = {'key': this.state.obj.key, 'label': this.state.obj.label, 'deleted': atomic(this.state.parent, this.state.obj, [])};
+    const batch = {'push-deleted': atomic(this.state.parent, this.state.obj, [])};
+    //const batch = {'key': this.state.obj.key, 'label': this.state.obj.label, 'deleted': atomic(this.state.parent, this.state.obj, [])};
     this.props.appFunctions.saveDelta(batch, 'deleted').then((any) => this.props.appFunctions.saveAppState());
     delete this;
   }
@@ -371,8 +374,14 @@ class RecursiveClassComponent extends Component {
     moved_node.toIndex = moved_item.toIndex;
     moved_node.toParent = destination.key;
     moved_node.index = moved_item.toIndex;
-    
-    console.log('from', moved_node.fromParent, 'to', moved_node.toParent);
+
+    const pref = moved_item.nodeParent.children.splice(moved_item.node.index, 1)[0];
+    destination.children.splice(moved_item.toIndex, 0, pref);
+
+
+
+    //console.
+    log('from', moved_node.fromParent, 'to', moved_node.toParent);
 
     // gross but streamlined to avoid a redraw of whole app.
     const from_inst = this.props.appFunctions.assets.plex.get(moved_node.fromParent).instance;
@@ -440,8 +449,10 @@ class RecursiveClassComponent extends Component {
               <span className="mini-text">({this.objRef.clicks})</span>
             </div>
             <div>
-              {(this.plex && this.plex.deltas) && this.plex.deltas.map((delta_node, n) => {
-                if(util.date_timestamp(delta_node.delta_timer) <= this.props.appFunctions.appDeltaSelect().to[1]){
+              {
+              // const s_all = assets.deltas.delta.filter(ps => ps.key === key).sort((a, b) => {a.delta_timer > b.delta_timer});
+              (this.plex && this.plex.deltas) && this.plex.deltas.map((delta_node, n) => {
+                // if(util.date_timestamp(delta_node.delta_timer) <= this.props.appFunctions.appDeltaSelect().to[1]){
                   return (
                     <div 
                     key={`${this.state.obj.key}-delta-${n}`} 
@@ -451,7 +462,7 @@ class RecursiveClassComponent extends Component {
                     <span>{delta_node.content && delta_node.content}</span>
                     </div>
                   )
-                }
+                // }
               })}
             </div>
           </div>
@@ -522,13 +533,42 @@ const App = (props) => {
   const base_selected = {from:null, to:[0, util.date_timestamp(new Date())], 'direction':null, 'items':0};
 
   const [deltaPosition, setDeltaPosition] = useState(base_selected);
-  // const base_selected = {delta:[11, 1686206275418]};
 
-  // const appDeltaSelected = (index=null, time=null) => {
-  //   if(index && time) base_selected.delta = [index, time];
-  //   return base_selected;
-  // }
+  const hasInactiveStatus = (key, method, id, par=null) => {    
+    const s_all = assets.deltas.delta.filter(ps => ps.key === key).sort((a, b) => {a.delta_timer > b.delta_timer});
+    const added = s_all.find(c => c.method === 'added' && !c.stash) ? false : true;
+    const deleted = s_all.find(c => c.method === 'deleted' && !c.stash) ? true : false;
+    return deleted || added;// || deleted;
+  }
 
+  const deltaValidate = (node) => { //'key',
+    const s_all = assets.deltas.delta.filter(ps => ps.key === node.key).sort((a, b) => {a.delta_timer > b.delta_timer});
+    const p = ['parent','fromParent','toParent'].map(st => {
+      return node[st] && 
+      node[st] !== 'root' && 
+      hasInactiveStatus(node[st], node.method, node.id, 't')});
+
+
+    const h = s_all.find(c => c.method === 'added' && !c.stash) ? false : true;
+    const j = s_all.find(c => c.method === 'deleted' && !c.stash && c.delta_timer < node.delta_timer) ? true : false;
+    const sp = node.method === 'added' && s_all.find(c => c.method === 'deleted' && !c.status);
+
+    let valid_moved = false;
+
+    if(node.method === 'moved'){ 
+      const moved = s_all.filter(c => c.method === 'moved' && c.delta_timer < node.delta_timer && c.status && !c.stash);
+      valid_moved = moved[0] && moved[0].toParent !== node.fromParent;
+    }
+
+    return p.includes(true) || h || j || valid_moved || sp;
+    // return [p.includes(true), h, valid_moved, !j].includes(true) ;
+  }
+
+  const deltaSaveState = (delta_node) => {
+    console.log(delta_node.label, delta_node.method, delta_node.status, 'changed');
+    const deltas = {'action':'modify', 'ids':[delta_node.id], 'variable':[{key:'status', value:delta_node.status}]};
+    saveApplicationState(deltas).then((save_dict) => console.log(save_dict.message));
+  }
 
   const appDeltaSelect = (toPosition, did_unstash=null) => {
     if(did_unstash) log('appDeltaSelect did_unstash', did_unstash);
@@ -538,6 +578,9 @@ const App = (props) => {
       console.log(assets.deltas.delta, toPosition, flagged_deltas);
       const deltas = {'action':'modify', 'ids':flagged_deltas, 'variable':[{key:'stash', value:did_unstash === 'REDO' ? false : true}]};
       saveApplicationState(deltas).then((save_dict) => console.log(save_dict.message));
+
+      //if(!assets.deltas.delta[toPosition[0]].status) return deltaPosition;
+    
     }
     // if(did_unstash){
     //   // const flagged_deltas = assets.deltas.delta.slice(0,now.to[0]).filter(fd => !fd.stash).map(fd => fd.id);
@@ -565,7 +608,7 @@ const App = (props) => {
 
       console.log(range.from[0], range.to[0], range);
       
-      log(history.AppHistory(range, assets.deltas.delta, assets.data_map, assets.plex, appReRender));
+      log(history.AppHistory(range, assets.deltas.delta, assets.data_map, assets.plex, appReRender, deltaValidate));
 
       setDeltaPosition(range);
 
@@ -585,27 +628,45 @@ const App = (props) => {
 
   const saveDelta = async (node, method='modify') => {
 
-    assets.data_map.set(node.key, node);
-    const delta_node = {...node};
+    if(method === 'deleted'){
+      const delta_Push_delete_node = {...node};
+      delta_Push_delete_node['push-deleted'].forEach(pd => {
+        pd.method = method;
+        pd.children && delete pd.children;
+        pd.delta_timer = new Date();
+        pd.id = util.keyGen();
+      });
+      console.log('delta_Push_delete_node',delta_Push_delete_node);
+      const save_dict = await saveApplicationState(delta_Push_delete_node);
+      log(save_dict.message);
 
-    delta_node.method = method;
-    delta_node.children && delete delta_node.children;
-    delta_node.delta_timer = new Date();
-    delta_node.id = util.keyGen();
-
-    const has_plex = assets.plex.get(delta_node.key);
-    if(!has_plex){
-      assets.plex.set(delta_node.key, {deltas:[delta_node], instance:null}); //for addition!
     }else{
-      has_plex.deltas.push(delta_node);
+      assets.data_map.set(node.key, node);
+      const delta_node = {...node};
+
+      delta_node.method = method;
+      delta_node.children && delete delta_node.children;
+      delta_node.delta_timer = new Date();
+      delta_node.id = util.keyGen();
+      delta_node.status = true;
+
+      const has_plex = assets.plex.get(delta_node.key);
+
+      if(!has_plex){
+        assets.plex.set(delta_node.key, {deltas:[delta_node], instance:null}); //for addition!
+      }else{
+        has_plex.deltas.push(delta_node);
+      }
+      
+
+
+      const save_dict = await saveApplicationState(delta_node);
+      
+      assets.deltas.delta.unshift(delta_node);
+      assets.data_map.get(delta_node.key).delta_node_id = delta_node.id;
+
+      log(save_dict.message);
     }
-    
-    assets.deltas.delta.unshift(delta_node);
-    assets.data_map.get(delta_node.key).delta_node_id = delta_node.id;
-
-    const save_dict = await saveApplicationState(delta_node);
-    log(save_dict.message);
-
 
     appHistoryList.current && appHistoryList.current.collapseAll();
     return 'saved';
@@ -646,6 +707,13 @@ const App = (props) => {
     log(save.message);
     // appReRender();
   }
+
+  const wipeAppState = async () =>{
+    const save_dict = await saveApplicationState({action:'wipe'});
+    log(save_dict.message);
+    window.location.reload();
+  }
+
 
   useEffect(() => {
     console.log('THIS IS THE data NOW', assets.data);
@@ -801,6 +869,8 @@ const App = (props) => {
               source={assets.deltas.delta}
               plex_source={assets.plex}
               data_map={assets.data_map}
+              deltaValidate = {deltaValidate}
+              deltaSaveState = {deltaSaveState}
               />
             </div>
           </div>
@@ -814,17 +884,10 @@ const App = (props) => {
 
       <div className="mini-text text-darker">
         <img src={logo} className="App-logo" alt="logo" />
-        {message}
-        <span className="has-click" onClick={(evt) => addNodeToRoot(evt)}>more</span>
-        <span className="has-click" onClick={(evt) => saveAppState(evt)}>force-save</span>
-        <a
-        className="mini-text has-click"
-        href="https://reactjs.org"
-        target="_blank"
-        rel="noopener noreferrer"
-        >
-        Learn React
-        </a>
+        {/* {message} */}
+        <span className="has-click" onClick={(evt) => addNodeToRoot(evt)}>more</span>&nbsp;
+        <span className="has-click" onClick={(evt) => saveAppState(evt)}>force-save</span>&nbsp;
+        <span className="has-click" onClick={(evt) => wipeAppState(evt)}>force-wipe</span>&nbsp;
       </div>
 
     </div>
